@@ -1,0 +1,9 @@
+<main>
+    <h1>Title from component app : {{titleApp}}</h1>
+    <button (click)="test()">tester le click</button>
+    <div *ngFor="let singleData of houses">
+        <div class="id" [style.color]="color">{{singleData.id}}</div>
+        <img *ngIf="false" [src]="singleData.photo" width="100px" />
+        <img *ngIf="true" [src]="singleData.photo" width="100px" />
+    </div>
+</main>
