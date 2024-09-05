@@ -1,6 +1,7 @@
 <main>
-    <h1>Title from component app : {{titleApp}}</h1>
-    <button (click)="test()">tester le click</button>
+    <app-accordion [data]="accordionData"/>
+    <h1 class="text-4xl text-blue-400">Title from component app : {{titleApp}}</h1>
+    <button  (click)="test()">tester le click</button>
     <div *ngFor="let singleData of houses">
         <div class="id" [style.color]="color">{{singleData.id}}</div>
         <img *ngIf="false" [src]="singleData.photo" width="100px" />

@@ -7,7 +7,6 @@ import { AdditionComponent } from './addition/addition.component';
   imports: [AdditionComponent],
   //template:'<p>te</p>',
   templateUrl: './detail.component.html',
-  styleUrl: './detail.component.css'
 })
 export class DetailComponent {
 
