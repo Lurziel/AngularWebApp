@@ -1,15 +1,20 @@
 import { Routes } from "@angular/router";
-import { HomeComponent } from "../pages/home/home.component";
+import { HomePageComponent } from "../pages/home-page/home-page.component";
 import { DetailComponent } from "../detail/detail.component";
+import { ExercicesPageComponent } from "../pages/exercices-page/exercices-page.component";
 
 const routeConfig: Routes = [
     {
       path: '',
-      component: HomeComponent,
+      component: HomePageComponent,
     },
     {
       path: 'detail',
       component: DetailComponent,
+    },
+    {
+      path: 'exercices',
+      component: ExercicesPageComponent,
     }
   ];
   

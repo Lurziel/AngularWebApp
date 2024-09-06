@@ -1,16 +1,24 @@
-import { Component, Input } from '@angular/core';
-import { log } from 'console';
+import { CommonModule, NgTemplateOutlet } from '@angular/common';
+import { Component, ElementRef, Input, ViewChild } from '@angular/core';
 
 @Component({
   selector: 'app-accordion',
   standalone: true,
-  imports: [],
+  imports: [CommonModule ,NgTemplateOutlet],
   templateUrl: './accordion.component.html',
 })
 
 
-export class AccordionComponent {
+export class AccordionComponent{
+
   @Input() data: AccordionData[] = [];
+  // @ViewChild('someDiv') someDiv!: ElementRef;
+  
+  // ngAfterViewInit() {
+  //   const div = this.someDiv.nativeElement.querySelector(".insert");
+  //   this.appendChild(this.data[0].component);
+  // }
+  
   toggleAccordion(index:number):void {
     const content = document.getElementById(`content-${index}`);
     const icon = document.getElementById(`icon-${index}`);
@@ -33,22 +41,19 @@ export class AccordionComponent {
     if (content!.style.maxHeight && content!.style.maxHeight !== '0px') {
         content!.style.maxHeight = '0';
         icon!.innerHTML = plusSVG;
-        console.log(content);
-        
     } else {
         content!.style.maxHeight = content!.scrollHeight + 'px';
         icon!.innerHTML = minusSVG;
-        console.log(content);
     }
 }
 }
 
-
-
 export class AccordionData {
   title:string ="";
   description:string="";
-  component?:any = null;
+  component:any;
 
-  constructor() {}
+  constructor(component:Component) {
+    this.component = component;
+  }
 }

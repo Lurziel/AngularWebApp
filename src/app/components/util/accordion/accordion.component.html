@@ -10,12 +10,12 @@
             </svg>
         </span>
     </button>
-    <div id="content-{{index}}" class="max-h-0 overflow-hidden transition-all duration-300 ease-in-out">
+    <div #someDiv id="content-{{index}}" class="max-h-0 overflow-hidden transition-all duration-300 ease-in-out">
         <div class="pb-5 text-sm text-slate-500">
             @if (element.description !== ""){
-                <p>{{element.description}}</p>
+            <p>{{element.description}}</p>
             }
-            {{element.component}}
+            <ng-container *ngComponentOutlet="element.component" />
         </div>
     </div>
 </div>

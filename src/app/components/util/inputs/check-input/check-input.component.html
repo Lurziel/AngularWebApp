@@ -1,0 +1,12 @@
+<div class="input-group py-3">
+    <span class="input-group-text" id="basic-addon1">
+        @if(result){
+        <i class="bi bi-hand-thumbs-up-fill"></i>
+        }
+        @if(!result){
+        <i class="bi bi-hand-thumbs-down-fill"></i>
+        }
+    </span>
+    <input (onChange)="valueChanged($event)" type="text" class="form-control" placeholder="entrez un texte"
+        aria-label="Username" aria-describedby="basic-addon1" />
+</div>
