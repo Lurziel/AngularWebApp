@@ -1,11 +1,15 @@
-import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { Component, Input } from '@angular/core';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-navigation-bar',
   standalone: true,
-  imports: [],
+  imports: [CommonModule, RouterModule],
   templateUrl: './navigation-bar.component.html',
 })
-export class NavigationBarComponent {
 
+export class NavigationBarComponent {
+  
+  @Input() navigationData: any[] = []
 }

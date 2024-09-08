@@ -1,5 +1,5 @@
 import { CommonModule, NgTemplateOutlet } from '@angular/common';
-import { Component, ElementRef, Input, ViewChild } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-accordion',
@@ -12,13 +12,7 @@ import { Component, ElementRef, Input, ViewChild } from '@angular/core';
 export class AccordionComponent{
 
   @Input() data: AccordionData[] = [];
-  // @ViewChild('someDiv') someDiv!: ElementRef;
-  
-  // ngAfterViewInit() {
-  //   const div = this.someDiv.nativeElement.querySelector(".insert");
-  //   this.appendChild(this.data[0].component);
-  // }
-  
+ 
   toggleAccordion(index:number):void {
     const content = document.getElementById(`content-${index}`);
     const icon = document.getElementById(`icon-${index}`);
