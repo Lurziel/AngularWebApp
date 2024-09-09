@@ -1,5 +1,5 @@
 @for(element of data;track element;let index = $index){
-<div class="border-b border-slate-200">
+<div class="border-b border-slate-200 px-5">
     <button (click)="toggleAccordion(index)" class="w-full flex justify-between items-center py-5 text-slate-800">
         <span>{{element.title}}</span>
         <span id="icon-{{index}}" class="text-slate-800 transition-transform duration-300">
@@ -9,7 +9,7 @@
             </svg>
         </span>
     </button>
-    <div #someDiv id="content-{{index}}" class="max-h-0 overflow-hidden transition-all duration-300 ease-in-out">
+    <div id="content-{{index}}" class="max-h-0 overflow-hidden transition-all duration-300 ease-in-out">
         <div class="pb-5 text-sm text-slate-500">
             @if (element.description !== ""){
             <p>{{element.description}}</p>

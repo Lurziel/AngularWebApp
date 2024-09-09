@@ -1,9 +1,7 @@
 <main>
-    <h1 class="text-4xl text-blue-400">Title from component app : {{titleApp}}</h1>
-    <button  (click)="test()">tester le click</button>
-    <div *ngFor="let singleData of houses">
-        <div class="id" [style.color]="color">{{singleData.id}}</div>
-        <img *ngIf="false" [src]="singleData.photo" width="100px" />
-        <img *ngIf="true" [src]="singleData.photo" width="100px" />
+    <app-page-title [title]="pageTitle"/>
+    
+    <div class="grid grid-cols-4 gap-4 px-5">
+        <app-card *ngFor="let sites of sitesList" [name]="sites.name" [description]="sites.description" [href]="sites.href"/>
     </div>
 </main>
