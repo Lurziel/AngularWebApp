@@ -1,7 +1,10 @@
 <main>
-    <app-page-title [title]="pageTitle"/>
-    
-    <div class="grid grid-cols-4 gap-4 px-5">
-        <app-card *ngFor="let sites of sitesList" [name]="sites.name" [description]="sites.description" [href]="sites.href"/>
+    <app-page-title [title]="pageTitle" />
+    <div class="flex justify-center">
+        <div
+            class="max-w-screen-2xl grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 justify-items-center">
+            <app-card class="m-6" *ngFor="let sites of sitesList" [name]="sites.name" [description]="sites.description"
+                [href]="sites.href" />
+        </div>
     </div>
 </main>

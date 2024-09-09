@@ -8,9 +8,13 @@ import { NavigationBarComponent } from '../components/util/navigation-bar/naviga
   templateUrl: './router.component.html',
 })
 export class RouterComponent {
-  routes:any = [
-    {path: "/", name: "Accueil" },
-    {path: "/exercices", name: "Exercices" },
-]
+  routes: any = [
+    {
+      path: "/", name: "Accueil"
+    },
+    {
+      path: "/exercices", name: "Exercices"
+    },
+  ]
 
 }
