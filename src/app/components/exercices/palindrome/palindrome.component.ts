@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { CheckInputComponent } from '../../util/inputs/check-input/check-input.component.js';
-import { log } from 'console';
 
 @Component({
   selector: 'app-palindrome',
@@ -12,7 +11,7 @@ export class PalindromeComponent {
 
   result: boolean = true;
   check(value: Event) {
-    let inputValue:string = (value.target as HTMLInputElement).value
+    let inputValue: string = (value.target as HTMLInputElement).value
     for (let i = 0; i < inputValue.length / 2; i++) {
       if (inputValue[i] !== inputValue[inputValue.length - i - 1]) {
         this.result = false;
