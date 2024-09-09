@@ -1,6 +1,6 @@
 @for(element of data;track element;let index = $index){
-<div class="border-b border-slate-200 px-5">
-    <button (click)="toggleAccordion(index)" class="w-full flex justify-between items-center py-5 text-slate-800">
+<div class="group transition delay-100 border-slate-200 max-w-4xl hover:ring hover:ring-slate-200 rounded-lg hover:scale-110">
+    <button (click)="toggleAccordion(index)" class="w-full flex justify-between items-center py-5 ps-10 pe-5 text-slate-800 group-hover:bg-slate-100">
         <span>{{element.title}}</span>
         <span id="icon-{{index}}" class="text-slate-800 transition-transform duration-300">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" class="w-4 h-4">
@@ -9,8 +9,8 @@
             </svg>
         </span>
     </button>
-    <div id="content-{{index}}" class="max-h-0 overflow-hidden transition-all duration-300 ease-in-out">
-        <div class="pb-5 text-sm text-slate-500">
+    <div id="content-{{index}}" class="max-h-0 ps-5 overflow-hidden transition-all duration-300 ease-in-out">
+        <div class="py-5 text-sm text-slate-600">
             @if (element.description !== ""){
             <p>{{element.description}}</p>
             }
