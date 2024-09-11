@@ -1,0 +1,10 @@
+ng generate component {dossier}/{nom du composant/dossier}
+            service
+
+ng generate component --skip-tests=true component-name
+
+
+auto indent vsc : ctr a, ctr k, ctrf
+commenter les lignes : ctr k c
+decommenter les lignes : ctr k u
+supprimer les imports inutiles : maj alt o

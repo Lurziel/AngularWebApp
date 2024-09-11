@@ -1,0 +1,32 @@
+---------------------------
+RASPBERRY PI 5
+
+lignes de commandes utiles :
+---------------------------
+
+
+- commandes basiques linux :
+cd
+ls -l
+sudo poweroff
+
+
+- affiche les différentes adresses du réseau
+ip a
+
+- gestion de la configuration du raspberry (ouvre l'interface)
+sudo raspi-config
+
+Se connecter en SSH (ligne de commande) depuis un autre ordi :
+- Activer le SSH : config > interface options > SSH
+
+- sur le terminal windows :
+- lurziel : nom de l'utilisateur raspberry / raspberrypi : hostname du raspberry
+ssh lurziel@raspberrypi.local
+- si il demande le fingerprint, mettre yes
+- mettre le mot de passe utilisateur
+- pour terminer la connexion
+exit
+
+Prendre le contre de l'affichage du raspberry depuis un autre ordi (installer VNC windows) :
+- Activer le VNC : config > interface options > VNC

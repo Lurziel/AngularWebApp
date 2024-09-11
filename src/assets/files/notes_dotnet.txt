@@ -1,0 +1,18 @@
+Creer un controller
+dotnet aspnet-codegenerator controller -name HouseController -async -api -m House -dc DatabaseContext -outDir Controllers
+
+auto indent vsc : ctr a, ctr k, ctrf
+commenter les lignes : ctr k c
+decommenter les lignes : ctr k u
+supprimer les imports inutiles : maj alt o
+
+dotnet run
+
+//-------------------------
+BASE DE DONNEES
+
+dotnet ef migrations add init
+dotnet ef database update
+
+dotnet ef database update --connection "User Id=postgres.eagrwjeibddxxqzimwwb;Password=wiKJzmGfIK82USqq;Server=aws-0-eu-central-1.pooler.supabase.com;Port=6543;Database=postgres;Command Timeout=60;"
+

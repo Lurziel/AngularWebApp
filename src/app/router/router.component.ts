@@ -15,6 +15,9 @@ export class RouterComponent {
     {
       path: "/exercices", name: "Exercices"
     },
+    {
+      path: "/projects", name: "Projets"
+    },
   ]
 
 }
