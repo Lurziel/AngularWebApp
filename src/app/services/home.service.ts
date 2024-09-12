@@ -11,15 +11,14 @@ export class HomeService {
 
   readonly baseUrl = environment.apiUrl;
 
-  getAllHousingLocations(): any {
-    axios.get(this.baseUrl + "/api/house")
+  async getAllHousingLocations(): Promise<any> {
+    let result = await(axios.get(this.baseUrl + "/api/house")
       .then(result => {
-        console.log(result);
-        return result
+        return result.data
       })
-      .catch(e => console.log(e))
+      .catch(e => console.log(e)))
 
-    return null;
+    return result;
   }
 
   getHousingLocationById(id: number): HousingLocation | undefined {

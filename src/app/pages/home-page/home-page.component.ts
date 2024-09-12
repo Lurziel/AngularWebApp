@@ -32,10 +32,13 @@ export class HomePageComponent {
   ]
 
   housesService: HomeService = inject(HomeService);
-  houses!: HousingLocation[];
+  houses: HousingLocation[] = [];
 
   constructor() {
-    this.houses = this.housesService.getAllHousingLocations();
+    this.init()
   }
 
+  async init(){
+    this.houses = await this.housesService.getAllHousingLocations();
+  }
 }

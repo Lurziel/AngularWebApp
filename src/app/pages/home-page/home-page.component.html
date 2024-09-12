@@ -1,5 +1,10 @@
 <main>
     <app-page-title [title]="pageTitle" />
+    <div>
+        <p *ngFor="let element of houses">
+            {{element.city}}
+        </p>
+    </div>
     <div class="flex justify-center">
         <div
             class="max-w-screen-2xl grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 justify-items-center">
