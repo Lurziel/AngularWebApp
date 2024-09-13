@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { Component, inject, Input } from '@angular/core';
+import { Router, RouterModule } from '@angular/router';
+import { LoginService } from '../../../services/login.service';
 
 @Component({
   selector: 'app-navigation-bar',
@@ -10,6 +11,14 @@ import { RouterModule } from '@angular/router';
 })
 
 export class NavigationBarComponent {
-  
+
   @Input() navigationData: any[] = []
+
+  loginService: LoginService = inject(LoginService)
+  constructor(private router : Router) {  }
+
+  disconnect() {
+    this.loginService.clear();
+    this.router.navigate(['/']);
+  }
 }

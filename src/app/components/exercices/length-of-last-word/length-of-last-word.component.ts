@@ -10,8 +10,8 @@ import { ResultInputComponent } from '../../util/inputs/result-input/result-inpu
 export class LengthOfLastWordComponent {
   result: string = "";
 
-  check(value: Event) {
-    let inputValue: string = (value.target as HTMLInputElement).value
+  check(event: any) {
+    let inputValue: string = event.target.value
 
     let s = inputValue.trim()
     if (s.lastIndexOf(" ") < 0) {

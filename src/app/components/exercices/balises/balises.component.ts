@@ -11,8 +11,8 @@ export class BalisesComponent {
 
   result: boolean = true;
 
-  check(value: Event) {
-    let inputValue: string = (value.target as HTMLInputElement).value
+  check(event: any) {
+    let inputValue: string = event.target.value
 
     const opening = ['(', '{', '[']
     const closing = [')', '}', ']']

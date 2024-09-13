@@ -2,6 +2,7 @@ import { Routes } from "@angular/router";
 import { HomePageComponent } from "../pages/home-page/home-page.component";
 import { ExercicesPageComponent } from "../pages/exercices-page/exercices-page.component";
 import { ProjectsPageComponent } from "../pages/projects-page/projects-page.component";
+import { LoginPageComponent } from "../pages/login-page/login-page.component";
 
 const routeConfig: Routes = [
     {
@@ -15,6 +16,10 @@ const routeConfig: Routes = [
     {
       path: 'projects',
       component: ProjectsPageComponent,
+    },
+    {
+      path: 'connection',
+      component: LoginPageComponent,
     }
   ];
   

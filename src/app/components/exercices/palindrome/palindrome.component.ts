@@ -10,8 +10,8 @@ import { CheckInputComponent } from '../../util/inputs/check-input/check-input.c
 export class PalindromeComponent {
 
   result: boolean = true;
-  check(value: Event) {
-    let inputValue: string = (value.target as HTMLInputElement).value
+  check(event: any) {
+    let inputValue: string = event.target.value
     for (let i = 0; i < inputValue.length / 2; i++) {
       if (inputValue[i] !== inputValue[inputValue.length - i - 1]) {
         this.result = false;

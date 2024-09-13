@@ -1,5 +1,5 @@
 @for(element of data;track element;let index = $index){
-<div class="group transition max-w-4xl shadow-md hover:ring hover:ring-dark rounded-lg hover:scale-105">
+<div class="group transition max-w-sm md:max-w-4xl shadow-md hover:ring hover:ring-dark rounded-lg hover:scale-105">
     <button (click)="toggleAccordion(index)" class="transition transition-all w-full flex justify-between items-center py-5 ps-10 pe-5 text-dark group-hover:text-light group-hover:bg-secondary rounded-lg">
         <span>{{element.title}}</span>
         <span id="icon-{{index}}" class="text-dark transition-transform duration-300">

@@ -1,8 +1,7 @@
 import { CommonModule } from '@angular/common';
-import { Component, inject } from '@angular/core';
-import { HomeService, HousingLocation } from '../../services/home.service';
-import { PageTitleComponent } from '../../components/util/page-title/page-title.component';
+import { Component } from '@angular/core';
 import { CardComponent } from '../../components/util/card/card.component';
+import { PageTitleComponent } from '../../components/util/page-title/page-title.component';
 
 @Component({
   selector: 'home-page-component',
@@ -37,14 +36,14 @@ export class HomePageComponent {
     { name: "Bootstrap icons", description: "Bootstrap Icons est une bibliothèque d'icônes vectorielles open-source conçue pour être utilisée avec Bootstrap, mais compatible avec d'autres frameworks. Elle propose plus de 1 500 icônes en format SVG, couvrant une large gamme de besoins graphiques pour les interfaces utilisateur. Faciles à intégrer et personnalisables, ces icônes sont largement utilisées pour enrichir les designs web.", href: "https://icons.getbootstrap.com/?q=sheet" },
   ]
 
-  housesService: HomeService = inject(HomeService);
-  houses: HousingLocation[] = [];
+  //housesService: HomeService = inject(HomeService);
+  //houses: HousingLocation[] = [];
 
   constructor() {
-    this.init()
+    //this.init()
   }
 
-  async init(){
-    this.houses = await this.housesService.getAllHousingLocations();
-  }
+  // async init(){
+  //   this.houses = await this.housesService.getAllHousingLocations();
+  // }
 }
