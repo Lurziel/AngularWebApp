@@ -17,10 +17,6 @@ class PermissionsService {
     
     const loginService = inject(LoginService);
 
-    console.log(next);
-    console.log(state);
-    
-
     if(loginService.isTokenExpired()) {
       this.router.navigate(['/connection', {target:state.url}], {})
       return false

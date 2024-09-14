@@ -32,7 +32,6 @@ export class LoginPageComponent {
   connection() {
     this.loginService.simpleLogin(this.login, this.password)
       .then(result => {
-        console.log(this.route.snapshot.paramMap.get("target"));
         if (result === 200) {
           let redirect = this.route.snapshot.paramMap.get("target")
           if(redirect === null) redirect = '/'
