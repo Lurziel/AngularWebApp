@@ -1,10 +1,11 @@
 import { Inject, Injectable, InjectionToken } from '@angular/core';
 import axios from 'axios';
 import { environment } from '../../environments/environment';
+import { JwtHelperService } from '@auth0/angular-jwt';
 
 export const BROWSER_STORAGE = new InjectionToken<Storage>('Browser Storage', {
   providedIn: 'root',
-  factory: () => sessionStorage,
+  factory: () => localStorage,
 });
 
 @Injectable({
@@ -13,6 +14,7 @@ export const BROWSER_STORAGE = new InjectionToken<Storage>('Browser Storage', {
 export class LoginService {
 
   readonly baseUrl = environment.apiUrl;
+  private helper = new JwtHelperService();
 
   SESSION_STORAGE_TOKEN = 'token';
 
@@ -36,19 +38,24 @@ export class LoginService {
     })
   }
   
-  isAuthenticated() {
+  isAuthenticated(): boolean {
       return this.getToken() !== null;
   }
 
-  getToken() {
-      return this.storage.getItem(this.SESSION_STORAGE_TOKEN);
+  getToken(): string | null {
+    return this.storage.getItem(this.SESSION_STORAGE_TOKEN);
   }
 
-  clear(){
+  clear():void {
       this.storage.removeItem(this.SESSION_STORAGE_TOKEN);
   }
 
-  private storeToken(token: string) {
+  isTokenExpired(): boolean{
+    const token = this.storage.getItem(this.SESSION_STORAGE_TOKEN);
+    return token === null ? true : this.helper.isTokenExpired(token)
+  }
+
+  private storeToken(token: string):void {
       this.storage.setItem(this.SESSION_STORAGE_TOKEN,token);
   }
 

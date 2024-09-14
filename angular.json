@@ -27,7 +27,7 @@
             "styles": [
               "src/styles.css"
             ],
-            "scripts": [],
+            "scripts": ["./node_modules/@material-tailwind/html/scripts/popover.js","./node_modules/@material-tailwind/html/scripts/ripple.js"],
             "server": "src/main.server.ts",
             "prerender": true,
             "ssr": {

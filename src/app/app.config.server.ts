@@ -8,9 +8,9 @@ const serverConfig: ApplicationConfig = {
   providers: [
     provideServerRendering(),
     {
-          provide: LoginService,
-          useClass: StorageService,
-        },
+      provide: LoginService,
+      useClass: StorageService,
+    },
   ]
 };
 

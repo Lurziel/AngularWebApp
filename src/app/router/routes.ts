@@ -1,26 +1,57 @@
-import { Routes } from "@angular/router";
-import { HomePageComponent } from "../pages/home-page/home-page.component";
+import { inject, Injectable } from "@angular/core";
+import { ActivatedRouteSnapshot, CanActivateFn, Router, RouterStateSnapshot, Routes } from "@angular/router";
 import { ExercicesPageComponent } from "../pages/exercices-page/exercices-page.component";
-import { ProjectsPageComponent } from "../pages/projects-page/projects-page.component";
+import { HomePageComponent } from "../pages/home-page/home-page.component";
 import { LoginPageComponent } from "../pages/login-page/login-page.component";
+import { ProjectsPageComponent } from "../pages/projects-page/projects-page.component";
+import { LoginService } from "../services/login.service";
+
+@Injectable({
+  providedIn: 'root',
+})
+class PermissionsService {
+
+  constructor(private router: Router) { }
+
+  canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
+    
+    const loginService = inject(LoginService);
+
+    console.log(next);
+    console.log(state);
+    
+
+    if(loginService.isTokenExpired()) {
+      this.router.navigate(['/connection', {target:state.url}], {})
+      return false
+    }
+    return true
+  }
+}
+
+export const AuthGuard: CanActivateFn = (next: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean => {
+  return inject(PermissionsService).canActivate(next, state);
+}
 
 const routeConfig: Routes = [
-    {
-      path: '',
-      component: HomePageComponent,
-    },
-    {
-      path: 'exercices',
-      component: ExercicesPageComponent,
-    },
-    {
-      path: 'projects',
-      component: ProjectsPageComponent,
-    },
-    {
-      path: 'connection',
-      component: LoginPageComponent,
-    }
-  ];
-  
-  export default routeConfig;
+  {
+    path: '',
+    component: HomePageComponent,
+  },
+  {
+    path: 'exercices',
+    component: ExercicesPageComponent,
+  },
+  {
+    path: 'projects',
+    component: ProjectsPageComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'connection',
+    component: LoginPageComponent,
+  }
+];
+
+
+export default routeConfig;

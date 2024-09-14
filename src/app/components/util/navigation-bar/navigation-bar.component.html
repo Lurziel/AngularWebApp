@@ -1,36 +1,31 @@
-<nav
-    class="bg-dark w-full px-4 py-2 mx-auto lg:px-8 lg:py-3 backdrop-blur-lg shadow-xl backdrop-saturate-150">
+<nav class="bg-dark w-full px-4 py-2 mx-auto lg:px-8 lg:py-3 backdrop-blur-lg shadow-xl backdrop-saturate-150">
     <div class="container flex flex-wrap items-center justify-between mx-auto text-dark">
         <a [routerLink]="['/']" class="mr-4 cursor-pointer text-base text-dark font-semibold">
             <header class="brand-name">
-                <img class="animate-bounce brand-logo object-scale-down" width="32" src="assets/images/du-coca-64.png" alt="logo"
-                    aria-hidden="true">
+                <img class="animate-bounce brand-logo object-scale-down" width="32" src="assets/images/du-coca-64.png"
+                    alt="logo" aria-hidden="true">
             </header>
         </a>
         <ul class="flex flex-row items-center lg:gap-6">
             <li *ngFor="let data of navigationData">
-                <a [routerLink]="data.path"
-                    class="flex p-2 items-center md:text-md text-sm gap-x-2 text-light rounded-xl hover:text-dark hover:bg-light hover:ring hover:ring-light">
+                <a [routerLink]="data.path" [class]="linkClass">
                     {{data.name}}
                 </a>
             </li>
             @if(!loginService.isAuthenticated()){
-                <li>
-                    <a [routerLink]="'/connection'"
-                        class="flex p-2 items-center md:text-md text-sm gap-x-2 text-light rounded-xl hover:text-dark hover:bg-light hover:ring hover:ring-light">
-                        Connexion
-                    </a>
-                </li>
+            <li>
+                <a [routerLink]="'/connection'" [class]="linkClass">
+                    Connexion
+                </a>
+            </li>
             }
             @if(loginService.isAuthenticated()){
-                <li>
-                    <button (click)="disconnect()"
-                        class="flex p-2 items-center md:text-md text-sm gap-x-2 text-light rounded-xl hover:text-dark hover:bg-light hover:ring hover:ring-light">
-                        Déconnexion
-                    </button>
-                </li>
+            <li>
+                <button (click)="disconnect()" [class]="linkClass">
+                    Déconnexion
+                </button>
+            </li>
             }
-
         </ul>
     </div>
 </nav>

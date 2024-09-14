@@ -1,7 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { PageTitleComponent } from '../../components/util/page-title/page-title.component';
 import { LoginService } from '../../services/login.service';
-import {Router} from "@angular/router"
+import { ActivatedRoute, Router } from "@angular/router"
 
 @Component({
   selector: 'app-login-page',
@@ -15,26 +15,33 @@ export class LoginPageComponent {
   login: string = "user@user.com"
   password: string = "password"
 
-  errorMessage:string = ""
+  errorMessage: string = ""
 
   loginService: LoginService = inject(LoginService);
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private route:ActivatedRoute) { }
 
-  loginChange(event: any){
+  loginChange(event: any) {
     this.login = event.target.value
   }
 
-  passChange(event : any){
+  passChange(event: any) {
     this.password = event.target.value
   }
 
   connection() {
     this.loginService.simpleLogin(this.login, this.password)
       .then(result => {
-        result === 200 ? this.router.navigate(['/']) : this.errorMessage = "Mauvais login ou mot de passe."
+        console.log(this.route.snapshot.paramMap.get("target"));
+        if (result === 200) {
+          let redirect = this.route.snapshot.paramMap.get("target")
+          if(redirect === null) redirect = '/'
+          this.router.navigate([redirect])
+        } else {
+          this.errorMessage = "Mauvais login ou mot de passe."
+        }
       })
-      .catch(e =>{
+      .catch(e => {
         this.errorMessage = e
       })
   }
