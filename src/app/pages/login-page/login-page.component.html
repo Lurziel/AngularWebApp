@@ -7,9 +7,7 @@
             </label>
             <input type="text"
                 class="w-full bg-transparent placeholder:text-slate-500 text-slate-700 text-sm border border-slate-400 rounded-md px-3 py-2 transition duration-300 ease focus:outline-none focus:border-slate-400 hover:border-slate-300 shadow-sm focus:shadow"
-                [(value)]="login"
-                (input)="loginChange($event)"
-                placeholder="Login" />
+                [(value)]="login" (input)="loginChange($event)" placeholder="Login" />
         </div>
         <div class="w-full max-w-sm min-w-[200px] pb-5">
             <label class="block mb-2 text-sm text-dark">
@@ -17,14 +15,15 @@
             </label>
             <input type="text"
                 class="w-full bg-transparent placeholder:text-slate-500 text-slate-700 text-sm border border-slate-400 rounded-md px-3 py-2 transition duration-300 ease focus:outline-none focus:border-slate-400 hover:border-slate-300 shadow-sm focus:shadow"
-                [(value)]="password"
-                (input)="passChange($event)"
-                type="password"
-                placeholder="Mot de passe" />
+                [(value)]="password" (input)="passChange($event)" type="password" placeholder="Mot de passe" />
         </div>
         @if(errorMessage){
-            <p class="bg-red-600 text-left ring ring-red-700 rounded-md max-w-sm text-light text-xs font-semibold px-2 py-2 drop-shadow-xl">{{errorMessage}}</p>
-        }
-        <button class="rounded-full bg-secondary text-light mt-5 py-2 hover:opacity-75 active:bg-dark" (click)="connection()">Connexion</button>
+        <p
+            class="bg-red-600 text-left ring ring-red-700 rounded-md max-w-sm text-light text-xs font-semibold px-2 py-2 drop-shadow-xl">
+            {{errorMessage}}</p>
+        }<button class="rounded-full bg-secondary text-light mt-5 mb-2 py-2 hover:opacity-75 active:bg-dark"
+            (click)="connection()">Connexion</button>
+        <p class="max-w-[180px] text-xs" align="center">La connexion peut prendre jusqu'à 20 secondes si le système REST
+            est en veille</p>
     </div>
 </div>
