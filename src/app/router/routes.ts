@@ -41,7 +41,7 @@ const routeConfig: Routes = [
   {
     path: 'projects',
     component: ProjectsPageComponent,
-    canActivate: [AuthGuard]
+    //canActivate: [AuthGuard]
   },
   {
     path: 'connection',

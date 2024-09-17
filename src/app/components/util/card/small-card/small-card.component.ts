@@ -1,13 +1,13 @@
 import { Component, Input } from '@angular/core';
-import { LinkButtonComponent } from '../link-button/link-button.component';
+import { LinkButtonComponent } from '../../link-button/link-button.component';
 
 @Component({
-  selector: 'app-card',
+  selector: 'app-small-card',
   standalone: true,
   imports: [LinkButtonComponent],
-  templateUrl: './card.component.html',
+  templateUrl: './small-card.component.html',
 })
-export class CardComponent {
+export class SmallCardComponent {
   @Input() name:string = ""
   @Input() description : string = ""
   @Input() href:string = ""

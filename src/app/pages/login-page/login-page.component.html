@@ -1,6 +1,6 @@
 <app-page-title [title]="title" />
 <div class="w-full flex justify-center">
-    <div class="flex flex-col min-w-sm ring ring-secondary rounded-lg p-10 mb-10">
+    <div class="flex flex-col min-w-sm ring ring-secondary bg-white rounded-lg p-10 mb-10">
         <div class="w-full max-w-sm min-w-[200px] pb-5">
             <label class="block mb-2 text-sm text-dark">
                 Login
@@ -23,7 +23,7 @@
             {{errorMessage}}</p>
         }<button class="rounded-full bg-secondary text-light mt-5 mb-2 py-2 hover:opacity-75 active:bg-dark"
             (click)="connection()">Connexion</button>
-        <p class="max-w-[180px] text-xs" align="center">La connexion peut prendre jusqu'à 20 secondes si le système REST
+        <p class="max-w-[180px] text-xs text-justify" align="center">La connexion peut prendre jusqu'à 20 secondes si le système REST
             est en veille</p>
     </div>
 </div>
