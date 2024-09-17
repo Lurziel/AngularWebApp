@@ -16,10 +16,11 @@ export class LoginPageComponent {
   password: string = "password"
 
   errorMessage: string = ""
+  isLoading: boolean = false
 
   loginService: LoginService = inject(LoginService);
 
-  constructor(private router: Router, private route:ActivatedRoute) { }
+  constructor(private router: Router, private route: ActivatedRoute) { }
 
   loginChange(event: any) {
     this.login = event.target.value
@@ -30,17 +31,21 @@ export class LoginPageComponent {
   }
 
   connection() {
+    this.isLoading = true
     this.loginService.simpleLogin(this.login, this.password)
       .then(result => {
+        this.isLoading = false
         if (result === 200) {
           let redirect = this.route.snapshot.paramMap.get("target")
-          if(redirect === null) redirect = '/'
+          if (redirect === null) redirect = '/'
           this.router.navigate([redirect])
         } else {
           this.errorMessage = "Mauvais login ou mot de passe."
         }
       })
       .catch(e => {
+        this.isLoading = false
+
         this.errorMessage = e
       })
   }
