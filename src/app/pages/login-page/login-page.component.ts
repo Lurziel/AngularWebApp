@@ -1,7 +1,7 @@
 import { Component, inject } from '@angular/core';
+import { ActivatedRoute, Router } from "@angular/router";
 import { PageTitleComponent } from '../../components/util/page-title/page-title.component';
 import { LoginService } from '../../services/login.service';
-import { ActivatedRoute, Router } from "@angular/router"
 
 @Component({
   selector: 'app-login-page',
@@ -34,19 +34,23 @@ export class LoginPageComponent {
     this.isLoading = true
     this.loginService.simpleLogin(this.login, this.password)
       .then(result => {
-        this.isLoading = false
         if (result === 200) {
           let redirect = this.route.snapshot.paramMap.get("target")
           if (redirect === null) redirect = '/'
           this.router.navigate([redirect])
-        } else {
+        } 
+        else if (result === undefined) {
+          this.errorMessage = "Base de données indisponible"
+        } 
+        else {
           this.errorMessage = "Mauvais login ou mot de passe."
         }
       })
       .catch(e => {
-        this.isLoading = false
-
         this.errorMessage = e
+      })
+      .finally(() => {
+        this.isLoading = false
       })
   }
 }
