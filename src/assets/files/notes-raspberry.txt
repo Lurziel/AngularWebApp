@@ -30,3 +30,18 @@ exit
 
 Prendre le contre de l'affichage du raspberry depuis un autre ordi (installer VNC windows) :
 - Activer le VNC : config > interface options > VNC
+
+- Installer python
+sudo apt-get update
+sudo apt install python3-gpiozero
+- verifier la version avec la commande :
+python
+
+- Afficher l'architecture du raspberry
+pinout
+
+- lancer l'application Preact (avec host pour l'ouvrir au réseau)
+npm run dev --host
+
+- lancer le service Python
+fastapi dev app.py --host 192.168.1.48
