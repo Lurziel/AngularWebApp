@@ -33,7 +33,7 @@ export class ProjectsPageComponent {
       img: "assets/images/rasp-pi-5.jpg"
     },
     {
-      name: "Portofilio version Angular 18.0 et TS",
+      name: "Portofolio version Angular 18.0 et TS",
       description: "Site réalisé en Angular et TypeScript. le CSS est géré avec le framework Tailwind CSS et Material Tailwind pour une plus grande liberté d'action. Le déploiement est effectué sur Vercel.",
       img: "assets/images/angular.png"
     },
@@ -43,7 +43,7 @@ export class ProjectsPageComponent {
       img: "assets/images/dotnet.png"
     },
     {
-      name: "Portofilio version React et JS",
+      name: "Portofolio version React et JS",
       description: "Version moins développée du portofolio qui utilise les technologies React et JavaScript. Le CSS est fait avec le framework Bootstrap. Lien vers le site : https://react-web-app-rosy.vercel.app/",
       img: "assets/images/react.png"
     },
