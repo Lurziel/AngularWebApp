@@ -7,7 +7,7 @@
 
         <div class="w-full flex flex-col items-center">
             <app-large-card class="mx-5 mb-5" *ngFor="let project of projects" [name]="project.name" [description]="project.description"
-                [img]="project.img" />
+                [img]="project.img" [href]="project.href"/>
         </div>
         <h2 class="text-dark drop-shadow-lg font-sans text-3xl pt-5 pb-8" align="center">Architecture du portfolio</h2>
         <div class="w-full flex flex-col items-center">

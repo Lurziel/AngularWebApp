@@ -13,5 +13,10 @@
       <p class="mb-8 text-dark leading-normal font-light text-justify">
         {{description}}
       </p>
+      @if(href){
+        <div class="flex w-full justify-center md:justify-start">
+          <app-link-button [href]="href" name="Visiter"/>
+        </div>
+      }
     </div>
   </div> 

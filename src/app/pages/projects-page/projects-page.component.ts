@@ -35,17 +35,19 @@ export class ProjectsPageComponent {
     {
       name: "Portfolio version Angular 18.0 et TS",
       description: "Site réalisé en Angular et TypeScript. le CSS est géré avec le framework Tailwind CSS et Material Tailwind pour une plus grande liberté d'action. Le déploiement est effectué sur Vercel.",
-      img: "assets/images/angular.png"
+      img: "assets/images/angular.png",
+      href: "https://www.charles-depaz.ovh/"
     },
     {
       name: "Service REST en .Net 8.0",
-      description: "Service backend utilisé pour faire appel à diverses API externes ainsi que pour s'authentifier dans le portfolio. L'ORM utilisé pour communiqué avec la bd (postgreSQL) est Entity Framework et le framework utilisé pour l'authentification est Identity. Les déploiements du service REST et de la base de données ont été effectués sur Render. Le lien de l'API est le suivant : https://dotnetrest.onrender.com",
+      description: "Service backend utilisé pour faire appel à diverses API externes ainsi que pour s'authentifier dans le portfolio. L'ORM utilisé pour communiqué avec la bd (postgreSQL) est Entity Framework et le framework utilisé pour l'authentification est Identity. Les déploiements du service REST et de la base de données ont été effectués sur Render.",
       img: "assets/images/dotnet.png"
     },
     {
       name: "Portfolio version React et JS",
-      description: "Version moins développée du portfolio qui utilise les technologies React et JavaScript. Le CSS est fait avec le framework Bootstrap. Lien vers le site : https://react-web-app-rosy.vercel.app/",
-      img: "assets/images/react.png"
+      description: "Version moins développée du portfolio qui utilise les technologies React et JavaScript. Le CSS est fait avec le framework Bootstrap.",
+      img: "assets/images/react.png",
+      href: "https://react-web-app-rosy.vercel.app/"
     },
   ]
 }
