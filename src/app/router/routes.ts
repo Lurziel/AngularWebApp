@@ -3,7 +3,7 @@ import { ActivatedRouteSnapshot, CanActivateFn, Router, RouterStateSnapshot, Rou
 import { ExercicesPageComponent } from "../pages/exercices-page/exercices-page.component";
 import { HomePageComponent } from "../pages/home-page/home-page.component";
 import { LoginPageComponent } from "../pages/login-page/login-page.component";
-import { ProjectsPageComponent } from "../pages/projects-page/projects-page.component";
+import { TechnologiesPageComponent } from "../pages/technologies-page/technologies-page.component";
 import { LoginService } from "../services/login.service";
 
 @Injectable({
@@ -39,8 +39,8 @@ const routeConfig: Routes = [
     component: ExercicesPageComponent,
   },
   {
-    path: 'projects',
-    component: ProjectsPageComponent,
+    path: 'technologies',
+    component: TechnologiesPageComponent,
     //canActivate: [AuthGuard]
   },
   {

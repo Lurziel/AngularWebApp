@@ -1,23 +1,25 @@
 <nav class="bg-dark w-full px-4 md:px-8 mx-auto backdrop-blur-lg">
     <div class="container flex flex-wrap items-center justify-between mx-auto text-dark">
         <a [routerLink]="['/']" class="mr-4 cursor-pointer">
-            <header class="brand-name">
-                <img class="animate-bounce brand-logo object-scale-down" width="32" src="assets/images/du-coca-64.png"
-                    alt="logo" aria-hidden="true">
+            <header class="flex flex-row brand-name">
+                <!-- <img class="animate-bounce brand-logo object-scale-down" width="32" src="assets/images/du-coca-64.png"
+                    alt="logo" aria-hidden="true"> -->
+                <p class="text-white drop-shadow-sm font-sans text-xl">Charles D.</p>
             </header>
         </a>
         <ul class="flex flex-row items-center lg:gap-6">
             <li *ngFor="let data of navigationData">
                 <a [routerLink]="data.path" [class]="linkClass">
                     <p class="hidden md:block">{{data.name}}</p>
-                    <app-svg [src]="data.svg"/>
+                    <app-svg [src]="data.svg" />
                 </a>
             </li>
             @if(!loginService.isAuthenticated()){
             <li>
                 <a [routerLink]="'/connection'" [class]="linkClass">
                     <p class="hidden md:block">Connexion</p>
-                    <app-svg src="M15.75 9V5.25A2.25 2.25 0 0 0 13.5 3h-6a2.25 2.25 0 0 0-2.25 2.25v13.5A2.25 2.25 0 0 0 7.5 21h6a2.25 2.25 0 0 0 2.25-2.25V15M12 9l-3 3m0 0 3 3m-3-3h12.75"/>
+                    <app-svg
+                        src="M15.75 9V5.25A2.25 2.25 0 0 0 13.5 3h-6a2.25 2.25 0 0 0-2.25 2.25v13.5A2.25 2.25 0 0 0 7.5 21h6a2.25 2.25 0 0 0 2.25-2.25V15M12 9l-3 3m0 0 3 3m-3-3h12.75" />
                 </a>
             </li>
             }
@@ -25,7 +27,8 @@
             <li>
                 <button (click)="disconnect()" [class]="linkClass">
                     <p class="hidden md:block">Déconnexion</p>
-                    <app-svg src="M8.25 9V5.25A2.25 2.25 0 0 1 10.5 3h6a2.25 2.25 0 0 1 2.25 2.25v13.5A2.25 2.25 0 0 1 16.5 21h-6a2.25 2.25 0 0 1-2.25-2.25V15m-3 0-3-3m0 0 3-3m-3 3H15"/>
+                    <app-svg
+                        src="M8.25 9V5.25A2.25 2.25 0 0 1 10.5 3h6a2.25 2.25 0 0 1 2.25 2.25v13.5A2.25 2.25 0 0 1 16.5 21h-6a2.25 2.25 0 0 1-2.25-2.25V15m-3 0-3-3m0 0 3-3m-3 3H15" />
                 </button>
             </li>
             }

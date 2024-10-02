@@ -13,7 +13,7 @@
     <div id="content-{{index}}" class="max-h-0 ps-5 overflow-hidden transition-all duration-300 ease-in-out">
         <div class="py-5 text-sm text-dark">
             @if (element.description !== ""){
-            <p class="text-justify pe-5 pb-5">{{element.description}}</p>
+            <p class="pe-5 pb-5">{{element.description}}</p>
             }
             <ng-container *ngComponentOutlet="element.component" />
         </div>
