@@ -19,10 +19,10 @@
         </div>
         @if(errorMessage){
         <p
-            class="bg-red-600 text-left ring ring-red-700 rounded-md max-w-sm text-light text-xs font-semibold px-2 py-2 drop-shadow-xl">
+            class="bg-red-600 text-left ring ring-red-700 rounded-md max-w-sm text-light text-xs font-semibold px-2 py-2 drop-shadow-md">
             {{errorMessage}}</p>
         }
-        <button class="rounded-full bg-secondary text-light mt-5 mb-2 py-2 hover:opacity-75 active:bg-dark"
+        <button class="rounded-full bg-secondary text-light mt-5 mb-2 py-2 hover:opacity-85 active:bg-dark"
             (click)="connection()" [disabled]="isLoading">
             @if(!isLoading){
             Connexion
