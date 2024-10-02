@@ -15,7 +15,7 @@ export class NavigationBarComponent {
 
   @Input() navigationData: any[] = []
 
-  linkClass = "flex p-2 mx-1 items-center md:text-md text-sm gap-x-2 text-light rounded-xl hover:text-dark hover:bg-light hover:ring hover:ring-light active:opacity-85"
+  linkClass = "flex p-3 pb-3.5 mx-1 items-center md:text-md text-sm gap-x-2 text-light rounded-t-md hover:text-dark hover:bg-light"
 
   loginService: LoginService = inject(LoginService)
   constructor(private router : Router) {  }
