@@ -29,23 +29,33 @@ export class HomePageComponent {
   projects: any[] = [
     {
       name: "Montage d'un raspberry",
-      description: "Montage d'un raspberry pi 5, 8 gigas de RAM, avec un NMVe pour stocker l'OS et les données. L'objectif recherché est de faire des projets orientés IOT (internet des objects).",
+      description: "Montage d'un raspberry pi 5, 8 gigas de RAM, avec un NMVe pour stocker l'OS et les données. L'objectif recherché est de faire des projets orientés IOT (internet des objets).",
       img: "assets/images/rasp-pi-5.jpg"
     },
     {
+      name: "Raspberry : site web réalisé en Preact",
+      description: "Interface web simple permettant d'interagir à distance avec le raspberry pi. Le site est déployé directement sur le raspberry pour que ce dernier soit autonome.",
+      img: "assets/images/Preact.png"
+    },
+    {
+      name: "Raspberry : service REST réalisé en python",
+      description: "Ce service REST sert de pont entre le site Preact et le raspberry pi. Il est réalisé avec le framework FastAPI et également déployé sur le raspberry.",
+      img: "assets/images/Python-programming-logo-on-transparent-background-PNG.png"
+    },
+    {
       name: "Portfolio version Angular 18.0 et TS",
-      description: "Site réalisé en Angular et TypeScript. le CSS est géré avec le framework Tailwind CSS et Material Tailwind pour une plus grande liberté d'action. Le déploiement est effectué sur Vercel.",
+      description: "Site réalisé en Angular et TypeScript. Le design est réalisé avec le framework Tailwind CSS et Material Tailwind pour une plus grande liberté d'action. Le déploiement est effectué sur Vercel.",
       img: "assets/images/angular.png",
       href: "https://www.charles-depaz.ovh/"
     },
     {
       name: "Service REST en .Net 8.0",
-      description: "Service backend utilisé pour faire appel à diverses API externes ainsi que pour s'authentifier dans le portfolio. L'ORM utilisé pour communiqué avec la bd (postgreSQL) est Entity Framework et le framework utilisé pour l'authentification est Identity. Les déploiements du service REST et de la base de données ont été effectués sur Render.",
+      description: "Service backend utilisé pour faire appel à diverses API externes ainsi que pour s'authentifier dans le portfolio. L'ORM utilisé pour communiqué avec la bd (postgreSQL) est Entity Framework et le système d'authentification est réalisé avec Identity. Les déploiements du service REST et de la base de données ont été effectués sur Render.",
       img: "assets/images/dotnet.png"
     },
     {
       name: "Portfolio version React et JS",
-      description: "Version moins développée du portfolio qui utilise les technologies React et JavaScript. Le CSS est fait avec le framework Bootstrap.",
+      description: "Version moins développée du portfolio qui utilise les technologies React et JavaScript. Le design est réalisé avec le framework Bootstrap.",
       img: "assets/images/react.png",
       href: "https://react-web-app-rosy.vercel.app/"
     },
