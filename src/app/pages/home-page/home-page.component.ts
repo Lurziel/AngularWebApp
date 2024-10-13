@@ -59,5 +59,20 @@ export class HomePageComponent {
       img: "assets/images/react.png",
       href: "https://react-web-app-rosy.vercel.app/"
     },
+    {
+      name: "GRICOR QCM",
+      description: "Site permettant aux professeurs d'Helmo de corriger automatiquement des QCM au format papier. J'ai travaillé dessus durant 2 années en compagnie de 4 autres analystes-développeurs. le frontend est réalisé en React et le backend en Python.",
+      img: "assets/images/qcm.jpg",
+    },
+    {
+      name: "Helmo tutorat",
+      description: "Site web et application mobile permettant aux élèves de s'inscrire à des tutorats ou d'en organiser. Le projet a été réalisé en binôme avec un autre analyste développeur. Le site est réalisé en React, l'application mobile en Flutter et le service REST en .Net.",
+      img: "assets/images/small-class.jpg",
+    },
+    {
+      name: "DungeonsHeros",
+      description: "Site web dans lequel on peut créer une équipe de héros pour les envoyer dans des donjons pour monter de niveau. Le concept est inspiré de donjons et dragons. Le site est réalisé uniquement en .Net.",
+      img: "assets/images/donjon-dragon.jpg",
+    }
   ]
 }

@@ -39,11 +39,6 @@ export class TechnologiesPageComponent {
 
   sitesList: any[] = [
     {
-      name: "LeetCode",
-      description: "LeetCode est une plateforme en ligne populaire dédiée à la préparation aux entretiens techniques et à l'amélioration des compétences en programmation. Elle propose des milliers de problèmes de codage couvrant divers algorithmes, structures de données, et concepts informatiques, avec des solutions dans plusieurs langages de programmation. En plus des exercices, LeetCode offre également des concours, des tutoriels et des discussions communautaires pour aider les utilisateurs à se préparer aux entretiens dans les grandes entreprises technologiques.",
-      href: "https://leetcode.com/"
-    },
-    {
       name: ".Net",
       description: ".NET est une plateforme de développement créée par Microsoft, utilisée pour construire une large gamme d'applications, y compris des applications web, mobiles, de bureau et de cloud. Elle offre un environnement d'exécution commun (CLR) et des bibliothèques pour plusieurs langages de programmation comme C#, F#, et Visual Basic. .NET est open-source, multiplateforme, et inclut des frameworks comme ASP.NET pour les applications web et Xamarin pour le développement mobile.",
       href: "https://learn.microsoft.com/en-us/dotnet/"
