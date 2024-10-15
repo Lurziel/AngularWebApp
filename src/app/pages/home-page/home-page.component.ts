@@ -11,20 +11,6 @@ import { LinkButtonComponent } from '../../components/util/link-button/link-butt
   templateUrl: './home-page.component.html',
 })
 export class HomePageComponent {
-  notes: any[] = [
-    {
-      name: "Notes sur Angular",
-      href: "assets/files/notes_angular.txt"
-    },
-    {
-      name: "Notes sur Dotnet",
-      href: "assets/files/notes_dotnet.txt"
-    },
-    {
-      name: "Notes sur raspberry",
-      href: "assets/files/notes-raspberry.txt"
-    }
-  ]
 
   projects: any[] = [
     {

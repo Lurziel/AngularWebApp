@@ -3,11 +3,12 @@ import { Component } from '@angular/core';
 import { LargeCardComponent } from '../../components/util/card/large-card/large-card.component';
 import { SmallCardComponent } from '../../components/util/card/small-card/small-card.component';
 import { PageTitleComponent } from '../../components/util/page-title/page-title.component';
+import { LinkButtonComponent } from '../../components/util/link-button/link-button.component';
 
 @Component({
   selector: 'app-technologies-page',
   standalone: true,
-  imports: [CommonModule, PageTitleComponent, SmallCardComponent, LargeCardComponent],
+  imports: [CommonModule, PageTitleComponent, SmallCardComponent, LargeCardComponent, LinkButtonComponent],
   templateUrl: './technologies-page.component.html',
 })
 export class TechnologiesPageComponent {
@@ -98,6 +99,21 @@ export class TechnologiesPageComponent {
       description: "Color Hunt est une plateforme en ligne qui propose une vaste collection de palettes de couleurs créées par des utilisateurs. Les palettes, organisées par thèmes et popularité, sont utilisées par des designers et développeurs pour inspirer et harmoniser leurs projets créatifs. Color Hunt est apprécié pour sa simplicité et la qualité de ses combinaisons de couleurs.",
       href: "https://colorhunt.co/"
     },
+  ]
+
+  notes: any[] = [
+    {
+      name: "Notes sur Angular",
+      href: "assets/files/notes_angular.txt"
+    },
+    {
+      name: "Notes sur Dotnet",
+      href: "assets/files/notes_dotnet.txt"
+    },
+    {
+      name: "Notes sur raspberry",
+      href: "assets/files/notes-raspberry.txt"
+    }
   ]
 
 }
