@@ -1,1 +1,11 @@
-<p>blackjack works!</p>
+<ul>
+    <li *ngFor="let card of bank.getCards()">
+        <img src='assets/images/cards/{{card}}.svg' />
+    </li>
+</ul>
+<ul>
+    <li *ngFor="let card of gambler.getCards()">
+        <img src='assets/images/cards/{{card}}.svg' />
+    </li>
+</ul>
+<button (click)="start()">Commencer</button>
