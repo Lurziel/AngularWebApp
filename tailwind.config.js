@@ -8,15 +8,15 @@ module.exports = withMT({
   theme: {
     extend: {
       colors: {
-        'primary': '#F4CE14',
-        'secondary': '#495E57',
-        'hover': '#00b183',
-        'light': '#F5F7F8',
-        'dark': '#45474B',
+        'primary': '#F4CE14', //yellow
+        'secondary': '#495E57', // dark green (header)
+        'hover': '#00b183', // light green
+        'light': '#F5F7F8', // white (text)
+        'dark': '#45474B', // grey (footer)
+        'alert': '#c13434', // red
       },
     },
   },
-  plugins: [
-  ],
+  plugins: [],
 })
 

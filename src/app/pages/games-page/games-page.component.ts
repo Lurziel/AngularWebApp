@@ -9,7 +9,7 @@ import { BlackjackComponent } from '../../components/games/blackjack/blackjack.c
   templateUrl: './games-page.component.html',
 })
 export class GamesPageComponent {
-  pageTitle = "Jeux"
+  pageTitle = "Blackjack"
 
 
 }

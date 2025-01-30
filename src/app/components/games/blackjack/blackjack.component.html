@@ -1,11 +1,14 @@
-<ul>
-    <li *ngFor="let card of bank.getCards()">
-        <img src='assets/images/cards/{{card}}.svg' />
-    </li>
-</ul>
-<ul>
-    <li *ngFor="let card of gambler.getCards()">
-        <img src='assets/images/cards/{{card}}.svg' />
-    </li>
-</ul>
-<button (click)="start()">Commencer</button>
+<div class="flex maw-w-4xl">
+    <div class="flex flex-col w-full">
+        <app-card-displayer [cards]="bank.getImages()"/>
+        <app-card-displayer [cards]="gambler.getImages()"/>
+        <p *ngIf="started">total des points : {{gambler.getTotal()}}</p>
+    </div>
+    <div class="flex flex-col justify-end">
+        <app-button *ngIf="!started" (click)="start()" color="bg-secondary" name="Commencer" width="w-full"/>
+        <app-button *ngIf="started" (click)="draw(gambler)" color="bg-hover" name="Tirer" width="w-full"/>
+        <app-button *ngIf="started" (click)="stop()" color="bg-dark" name="Stop" width="w-full"/>
+        <app-button *ngIf="started" (click)="double()" color="bg-alert" name="Doubler" width="w-full"/>
+        <app-button *ngIf="started" (click)="split()" color="bg-primary" name="Séparer" width="w-full"/>
+    </div>
+</div>

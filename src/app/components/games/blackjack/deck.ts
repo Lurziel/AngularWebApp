@@ -1,8 +1,10 @@
+import Card from "./card";
+
 export default class Deck {
 
   family = ["S", "H", "D", "C"]
-  value = ["A","2","3","4","5","6","7","8","9","10","J","Q","K"]
-  cards : string[] = []
+  value = ["A","2","3","4","5","6","7","8","9","T","J","Q","K"]
+  cards : Card[] = []
 
   constructor(){
     this.createcards()
@@ -12,7 +14,7 @@ export default class Deck {
   private createcards(){
     this.family.forEach( f => {
       this.value.forEach ( v => {
-        this.cards.push(v+f)
+        this.cards.push(new Card(v,f))
       })
     })
   }
@@ -24,7 +26,7 @@ export default class Deck {
     }
   };
 
-  getCards(): string[]{
+  getCards(): Card[]{
     return this.cards
   }
 
