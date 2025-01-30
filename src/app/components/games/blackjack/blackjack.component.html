@@ -1,14 +1,14 @@
 <div class="flex maw-w-4xl">
     <div class="flex flex-col w-full">
-        <app-card-displayer [cards]="bank.getImages()"/>
-        <app-card-displayer [cards]="gambler.getImages()"/>
-        <p *ngIf="started">total des points : {{gambler.getTotal()}}</p>
+        <app-card-displayer [cards]="bank.getCardImages()"/>
+        <app-card-displayer [cards]="gambler.getCardImages()"/>
+        <p>total des points : {{gambler.getPoints()}}</p>
     </div>
     <div class="flex flex-col justify-end">
         <app-button *ngIf="!started" (click)="start()" color="bg-secondary" name="Commencer" width="w-full"/>
         <app-button *ngIf="started" (click)="draw(gambler)" color="bg-hover" name="Tirer" width="w-full"/>
         <app-button *ngIf="started" (click)="stop()" color="bg-dark" name="Stop" width="w-full"/>
-        <app-button *ngIf="started" (click)="double()" color="bg-alert" name="Doubler" width="w-full"/>
-        <app-button *ngIf="started" (click)="split()" color="bg-primary" name="Séparer" width="w-full"/>
+        <!-- <app-button *ngIf="started" (click)="double()" color="bg-alert" name="Doubler" width="w-full"/> -->
+        <!-- <app-button *ngIf="started" (click)="split()" color="bg-primary" name="Séparer" width="w-full"/> -->
     </div>
 </div>

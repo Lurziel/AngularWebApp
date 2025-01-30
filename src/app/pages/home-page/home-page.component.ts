@@ -1,13 +1,11 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { LargeCardComponent } from '../../components/util/card/large-card/large-card.component';
-import { PageTitleComponent } from '../../components/util/page-title/page-title.component';
-import { LinkButtonComponent } from '../../components/util/link-button/link-button.component';
 
 @Component({
   selector: 'home-page-component',
   standalone: true,
-  imports: [CommonModule, PageTitleComponent, LinkButtonComponent, LargeCardComponent],
+  imports: [CommonModule, LargeCardComponent],
   templateUrl: './home-page.component.html',
 })
 export class HomePageComponent {

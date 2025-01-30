@@ -1,10 +1,10 @@
-import { CommonModule, NgTemplateOutlet } from '@angular/common';
+import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-accordion',
   standalone: true,
-  imports: [CommonModule ,NgTemplateOutlet],
+  imports: [CommonModule],
   templateUrl: './accordion.component.html',
 })
 

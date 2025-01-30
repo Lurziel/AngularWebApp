@@ -1,4 +1,4 @@
-import Card from "./card";
+import Card from "./blackjack/card";
 
 export default class Deck {
 

@@ -1,38 +1,23 @@
 import Card from "./card"
+import Hand from "./hand"
 
 abstract class Player{
-    private cards :Card[]= []
+    private cards :Hand= new Hand()
 
-    getImages(): string[]{
-        return this.cards.map(c => c.getImage())
+    getCardImages(): string[]{
+        return this.cards.getCardImages()
     }
     
     clearCards(): void{
-        this.cards =[]
-    }
-
-    getTotal() : number[]{
-        let total = [0]
-        // run cards
-        this.cards.forEach(c=> {
-            //check if 1 and 11 for aces
-            let temp :number[] = []
-            if(c.getPoints().length>1){
-                temp = total.map(t=> c.getPoints()[1]+t)
-            }
-            
-            // run totals
-            total = total.map(t => c.getPoints()[0] + t)
-            total.push(...temp)
-        })
-        return total
+        this.cards.clearCards()
     }
     
     draw(cards :Card[]): void{
-        let card = cards.shift()
-        if(card != undefined){
-            this.cards.push(card)
-        }
+        this.cards.draw(cards)
+    }
+
+    getPoints(): number[]{
+        return this.cards.getPoints()
     }
 
 }
