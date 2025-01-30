@@ -5,6 +5,7 @@ import { HomePageComponent } from "../pages/home-page/home-page.component";
 import { LoginPageComponent } from "../pages/login-page/login-page.component";
 import { TechnologiesPageComponent } from "../pages/technologies-page/technologies-page.component";
 import { LoginService } from "../services/login.service";
+import { GamesPageComponent } from "../pages/games-page/games-page.component";
 
 @Injectable({
   providedIn: 'root',
@@ -37,6 +38,10 @@ const routeConfig: Routes = [
   {
     path: 'exercices',
     component: ExercicesPageComponent,
+  },
+  {
+    path: 'games',
+    component: GamesPageComponent,
   },
   {
     path: 'technologies',
