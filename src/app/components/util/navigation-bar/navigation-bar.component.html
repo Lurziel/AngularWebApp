@@ -1,12 +1,5 @@
 <nav class="bg-secondary w-full px-4 md:px-8 mx-auto backdrop-blur-lg">
-    <div class="container flex flex-wrap items-center justify-between mx-auto text-dark">
-        <a [routerLink]="['/']" class="mr-4 cursor-pointer">
-            <header class="flex flex-row brand-name">
-                <!-- <img class="animate-bounce brand-logo object-scale-down" width="32" src="assets/images/du-coca-64.png"
-                    alt="logo" aria-hidden="true"> -->
-                <p class="text-white drop-shadow-sm font-sans text-xl">Charles D.</p>
-            </header>
-        </a>
+    <div class="container flex flex-wrap items-center justify-end mx-auto text-dark">
         <ul class="flex flex-row items-center lg:gap-6">
             <li *ngFor="let data of navigationData">
                 <a [routerLink]="data.path" [class]="linkClass">

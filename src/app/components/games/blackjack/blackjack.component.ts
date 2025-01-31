@@ -110,7 +110,7 @@ export class BlackjackComponent {
   }
 
   split() {
-
+    //TODO
   }
 
   private initGame() {
