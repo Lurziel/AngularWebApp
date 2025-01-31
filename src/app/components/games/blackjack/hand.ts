@@ -25,16 +25,16 @@ export default class Hand{
         return this.cards.map(c => c.getImage())
     }
 
-    clearCards(): void{
-        this.cards =[]
-    }
-
-    draw(cards: Card[]): void {
+    hit(cards: Card[]): void {
         let card = cards.shift()
         if (card != undefined) {
             this.cards.push(card)
             this.setPoints()
         }
+    }
+    
+    numberOfCard(): number{
+        return this.cards.length
     }
 
     private setPoints() : void {

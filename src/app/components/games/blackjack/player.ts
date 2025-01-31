@@ -10,19 +10,18 @@ abstract class Player {
     }
     clearCards(): void { this.cards = new Hand() }
 
-    draw(cards: Card[]): void { this.cards.draw(cards) }
+    hit(cards: Card[]): void { this.cards.hit(cards) }
 
     getPoints(): number[] { return this.cards.getPoints() }
     getHighestPlayablePoint(): number { return this.cards.getHighestPlayablePoint() }
     isBusted(): boolean { return this.cards.isBusted() }
     isBlackjack(): boolean { return this.cards.isBlackjack() }
     isBelow17(): boolean { return this.cards.isBelow17() }
+    getNumberOfCard(): number { return this.cards.numberOfCard() }
 
 }
 
-class Bank extends Player {
-
-}
+class Bank extends Player {}
 
 class Gambler extends Player {
     private tokens: number = 500

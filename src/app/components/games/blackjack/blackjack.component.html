@@ -1,6 +1,6 @@
 <div class="flex flex-col max-w-4xl justify-center items-center">
     <div class="flex flex-col max-w-xl mb-5">
-        <p class="text-right">Points de la banque : {{bank.getPoints()}}</p>
+        <p class="text-right">Points de la banque (reste à 17) : {{bank.getPoints()}}</p>
         <app-card-displayer [cards]="bank.getCardImages()" />
         <app-card-displayer [cards]="gambler.getCardImages()" />
         <p>Vos points : {{gambler.getPoints()}}</p>
@@ -12,13 +12,13 @@
     </div>
 
     <div class="flex flex-col items-center">
-        <app-button *ngIf="!started" (click)="start()" color="bg-secondary" name="Commencer" width="w-48" />
+        <app-button *ngIf="!started" (click)="start()" color="bg-secondary" name="Miser" width="w-48" />
         <div class="flex flex-row justify-center">
-            <app-button *ngIf="started" (click)="gamblerDraw(gambler)" color="bg-hover" name="Tirer" width="w-48" />
-            <app-button *ngIf="started" (click)="gamblerStop()" color="bg-dark" name="Stop" width="w-48" />
+            <app-button *ngIf="started" (click)="gamblerHit(gambler)" color="bg-hover" name="Carte" width="w-48" />
+            <app-button *ngIf="started" (click)="gamblerStop()" color="bg-dark" name="Rester" width="w-48" />
         </div>
         <div class="flex flex-row justify-center">
-            <!-- <app-button *ngIf="started" (click)="double()" color="bg-alert" name="Doubler" width="w-48"/> -->
+            <app-button *ngIf="started&&canDouble()" (click)="double()" color="bg-alert" name='Double (mise + {{bet}})' width="w-48"/>
             <!-- <app-button *ngIf="started" (click)="split()" color="bg-primary" name="Séparer" width="w-48"/> -->
         </div>
     </div>
