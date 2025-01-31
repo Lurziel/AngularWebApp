@@ -76,4 +76,8 @@ export default class Hand{
         this.points = this.points.filter((item, index) => this.points.indexOf(item) === index);
     }
 
+    getHighestPlayablePoint(): number {
+        return this.points[this.points.length-1];
+    }
+
 }
