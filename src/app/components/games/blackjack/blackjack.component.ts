@@ -16,26 +16,20 @@ export class BlackjackComponent {
   bank = new Bank()
   gambler = new Gambler()
 
-  totalGambler : number[] = [0]
-  totalBank : number[] = [0]
-
-  deck :Deck|null = null
+  deck :Deck = new Deck()
   started: boolean = false
 
   start(){
     
     this.initGame()
 
-    this.totalGambler = this.gambler.getPoints()
-    this.totalBank = this.bank.getPoints()
-
-    if(this.totalGambler.includes(21) && this.totalBank.includes(21)){
+    if(this.gambler.isBlackjack() && this.bank.isBlackjack()){
       //draw
       this.stop()
-    }else if(this.totalGambler.includes(21)){
+    }else if(this.gambler.isBlackjack()){
       //gamb win *1.5
       this.stop()
-    }else if(this.totalBank.includes(21)){
+    }else if(this.bank.isBlackjack()){
       //bank win
       this.stop()
     }
@@ -43,27 +37,31 @@ export class BlackjackComponent {
   }
 
   draw(player: Player) {    
-    if (this.deck != null){
       player.draw(this.deck.cards)
-      this.totalGambler = player.getPoints()
 
       // blackjack/21
-      if(this.totalGambler.includes(21)){
+      if(this.gambler.isBlackjack()){
         this.stop()
         //win
       }
 
       // busted
-      if(this.totalGambler.length<2 && this.totalGambler[0]>21){
+      if(this.gambler.isBusted()){
         this.stop()
         //lose
       }
-    }
   }
 
   stop(){
     this.started = false
+    // player stoped without busting 
+    if(!this.gambler.isBusted() && !this.gambler.isBlackjack()){
 
+      //bank not at 17 
+      while(this.bank.isBelow17()){
+        this.bank.draw(this.deck.cards)
+      }
+    }
   }
 
   double(){

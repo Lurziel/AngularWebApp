@@ -8,7 +8,7 @@ export default class Card{
         this.familly = familly
     }
     
-    getPoints(): number[]{
+    getCardValue(): number[]{
         if(this.value == "A"){
             return [1, 11]
         } else if (["T", "J", "Q", "K"].includes(this.value)) {

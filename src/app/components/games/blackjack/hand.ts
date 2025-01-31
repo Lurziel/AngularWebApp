@@ -1,26 +1,24 @@
 import Card from "./card";
 
 export default class Hand{
-    private cards : Card[] = []
+    
+    private cards: Card[] = []
+    
+    private busted: boolean = false
+    isBusted() { return this.busted }
+    
+    private blackjack: boolean = false
+    isBlackjack() { return this.blackjack }
 
-    private getTotal() : number[]{
-        let total = [0]
-        // run cards
-        this.cards.forEach(c=> {
-            //check if 1 and 11 for aces
-            let temp :number[] = []
-            if(c.getPoints().length>1){
-                temp = total.map(t=> c.getPoints()[1]+t)
-            }
-            
-            // run totals
-            total = total.map(t => c.getPoints()[0] + t)
-            total.push(...temp)
-        })
-        // order values and remove duplicate values
-        total.sort((a,b)=> a-b)
-        total = total.filter((item,index) => total.indexOf(item) === index);
-        return total
+    private points : number[] = [0]
+    getPoints() { return this.points }
+
+    getMaxPlayableValue(): number{
+        return Math.max(...this.points)
+    }
+
+    isBelow17(): boolean {
+        return this.getMaxPlayableValue()<17
     }
 
     getCardImages(): string[]{
@@ -35,17 +33,47 @@ export default class Hand{
         let card = cards.shift()
         if (card != undefined) {
             this.cards.push(card)
+            this.setPoints()
         }
     }
 
-    getPoints() : number[] {
-        let total : number[]= this.getTotal()
-        if(total.includes(21)) return [21]
-        let min = Math.min(...total)
-        if (min > 21){
-            return [min]
+    private setPoints() : void {
+        this.getTotal()
+        //if blackjack
+        if(this.points.includes(21)) {
+            this.blackjack = true
+            this.points = [21]
+            return
         }
-        return total.filter(t => t < 22)
+        //if busted
+        let min = Math.min(...this.points)
+        if (min > 21){
+            this.busted = true
+            this.points = [min]
+            return
+        }
+        // remove busted value
+        this.points = this.points.filter(t => t < 22)
+    }
+
+    private getTotal() : void{
+
+        // add last card to points
+        let lastCard = this.cards[this.cards.length - 1]
+        //check if 1 and 11 for aces
+        let temp: number[] = []
+        if (lastCard.getCardValue().length > 1) {
+            // add value 11 to total
+            temp = this.points.map(t => lastCard.getCardValue()[1] + t)
+        }
+
+        // add last card first value to total points
+        this.points = this.points.map(t => lastCard.getCardValue()[0] + t)
+        this.points.push(...temp)
+
+        // order values and remove duplicate values (double aces)
+        this.points.sort((a, b) => a - b)
+        this.points = this.points.filter((item, index) => this.points.indexOf(item) === index);
     }
 
 }
