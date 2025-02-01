@@ -1,10 +1,16 @@
-<div class="flex flex-col max-w-4xl justify-center items-center">
-    <div class="flex flex-col max-w-xl mb-5">
-        <p class="text-right">Points de la banque (reste à 17) : {{bank.getPoints(0)}}</p>
-        <app-card-displayer [cards]="bank.getAllCardImages()[0].length < 2 ? emptyHand : bank.getAllCardImages()[0]" />
-        <div class="flex flex-col items-center border-4 border-indigo-500" *ngFor="let hand of gambler.getHands()">
-            <app-card-displayer class="w-full" [cards]="hand.getCardImages().length < 2 ? emptyHand: hand.getCardImages()" />
-            <p>Vos points : {{hand.getPoints()}}</p>
+<div class="flex flex-col w-4xl justify-center items-center">
+    <div class="flex flex-col max-w-96 mb-5">
+        <div class="flex flex-col p-5 my-1.5 rounded-lg items-center border-4 bg-red-300">
+            <p class="text-right mb-2">Points de la banque (reste à 17) : {{bank.getPoints(0)}}</p>
+            <app-card-displayer class="w-full"
+                [cards]="bank.getAllCardImages()[0].length < 2 ? emptyHand : bank.getAllCardImages()[0]" />
+        </div>
+
+        <div class="flex flex-col p-5 my-1.5 rounded-lg items-center border-4 {{i=== playingHand? 'bg-hover':''}}"
+            *ngFor="let hand of gambler.getHands(), let i=index">
+            <app-card-displayer class="w-full"
+                [cards]="hand.getCardImages().length < 2 ? emptyHand: hand.getCardImages()" />
+            <p>Points : {{hand.getPoints()}}</p>
         </div>
 
         <p>Vos jetons : {{gambler.getTokens()}}</p>
@@ -15,16 +21,17 @@
     </div>
 
     <div class="flex flex-col items-center">
-        <app-button *ngIf="!started" (click)="start()" color="bg-secondary" name="Miser" width="w-48" />
+        <app-button *ngIf="!started" (click)="start()" color="bg-secondary" name="Miser" [width]="BUTTON_SIZE" />
         <div class="flex flex-row justify-center">
             <app-button *ngIf="started" (click)="gamblerHit(playingHand, gambler)" color="bg-hover" name="Carte"
-                width="w-48" />
-            <app-button *ngIf="started" (click)="gamblerStop()" color="bg-dark" name="Rester" width="w-48" />
+            [width]="BUTTON_SIZE" />
+            <app-button *ngIf="started" (click)="gamblerPass()" color="bg-dark" name="Rester" [width]="BUTTON_SIZE" />
         </div>
         <div class="flex flex-row justify-center">
             <app-button *ngIf="started&&canDouble(playingHand)" (click)="double(playingHand)" color="bg-alert"
-                name='Double (mise + {{mainBet}})' width="w-48" />
-            <app-button *ngIf="started&&canSplit(playingHand)" (click)="split(playingHand)" color="bg-primary" name="Séparer" width="w-48"/>
+                name='Double' [width]="BUTTON_SIZE" />
+            <app-button *ngIf="started&&canSplit(playingHand)" (click)="split(playingHand)" color="bg-primary"
+                name="Séparer" [width]="BUTTON_SIZE" />
         </div>
     </div>
 </div>

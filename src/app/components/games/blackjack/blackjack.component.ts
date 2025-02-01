@@ -5,6 +5,7 @@ import { CommonModule } from '@angular/common';
 import { CardDisplayerComponent } from '../card-displayer/card-displayer.component';
 import { ButtonComponent } from '../../util/button/button.component';
 import { FormsModule } from '@angular/forms';
+
 const INIT_BET = 10
 
 @Component({
@@ -14,6 +15,8 @@ const INIT_BET = 10
   templateUrl: './blackjack.component.html',
 })
 export class BlackjackComponent {
+
+  BUTTON_SIZE: string = "w-36"
 
   bank = new Bank()
   gambler = new Gambler()
@@ -37,31 +40,29 @@ export class BlackjackComponent {
 
     this.bets[0] = this.mainBet
     this.gambler.bet(this.mainBet)
-    if (this.gambler.isBlackjack(0) && this.bank.isBlackjack(0)) {
-      //draw blackjack
-      this.gameDraw(0)
-    } else if (this.gambler.isBlackjack(0)) {
-      //gamb win *1.5
-      this.gamblerWin(0)
-    } else if (this.bank.isBlackjack(0)) {
-      //bank win
-      this.gamblerLose(0)
+    if (this.gambler.isBlackjack(0) || this.bank.isBlackjack(0)) {
+      this.gameEnd()
     }
   }
 
   gamblerHit(handNumber: number, player: Player) {
     player.hit(handNumber, this.deck.cards)
 
-    // 21 or busted
-    if (this.gambler.isBlackjack(handNumber) || this.gambler.isBusted(handNumber)) {
-      this.gamblerStop()
+    if (this.gambler.isBusted(handNumber)) {
+      this.gamblerPass()
     }
 
   }
 
-  gamblerStop() {
+  gamblerPass(): void {
     this.playingHand += 1
-    if (this.playingHand > this.gambler.getNumberOfHand() - 1) this.gameEnd()
+    if (this.playingHand > this.gambler.getNumberOfHand() - 1) {
+      this.gameEnd()
+      return
+    }
+    if (this.gambler.isBlackjack(this.playingHand)) {
+      this.gamblerPass()
+    }
   }
 
   gameEnd() {
@@ -76,8 +77,12 @@ export class BlackjackComponent {
 
     for (let i = 0; i < this.gambler.getNumberOfHand(); i++) {
 
+      // gambler win blackjack
+      if(this.gambler.isBlackjack(i) && ! this.bank.isBlackjack(0)){
+        this.gamblerWin(i)
+      }
       // gambler busted hand
-      if (this.gambler.isBusted(i)) {
+      else if (this.gambler.isBusted(i)) {
         this.gamblerLose(i)
       }
       // player win
@@ -97,21 +102,18 @@ export class BlackjackComponent {
   }
 
   gamblerWin(handNumber: number): void {
-    this.started = false
     this.gambler.win(this.bets[handNumber] * 2)
     if (this.gambler.isBlackjack(handNumber)) {
       this.gambler.win(this.bets[handNumber] * 0.5)
-    }
+    }    
   }
 
   gameDraw(handNumber: number) {
-    this.started = false
     this.gambler.win(this.bets[handNumber])
   }
 
   gamblerLose(handNumber: number): void {
     // Afficher perdu
-    this.started = false
 
   }
 
@@ -127,7 +129,11 @@ export class BlackjackComponent {
 
   split(handNumber: number) {
     this.gambler.split(handNumber, this.deck.cards)
+    this.gambler.bet(this.mainBet)
     this.bets.push(this.mainBet)
+    if(this.gambler.isBlackjack(handNumber)){
+      this.gamblerPass()
+    }
   }
 
   private initGame() {
