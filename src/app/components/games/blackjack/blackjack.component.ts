@@ -30,12 +30,13 @@ export class BlackjackComponent {
   playingHand: number = 0;
   started: boolean = false
 
+  hideDealerCard : number | undefined = 1
+
   canDouble(handNumber: number): boolean { return this.gambler.canDouble(handNumber, this.mainBet) }
   canSplit(handNumber: number): boolean { return this.gambler.canSplit(handNumber) }
 
   start() {
     if (this.mainBet < 5 || this.mainBet > 500 || this.mainBet > this.gambler.getTokens()) return
-
     this.initGame()
 
     this.bets[0] = this.mainBet
@@ -67,6 +68,7 @@ export class BlackjackComponent {
 
   gameEnd() {
     this.started = false
+    this.hideDealerCard = undefined
 
     if(this.gambler.isAllBusted()) return
 
@@ -90,7 +92,7 @@ export class BlackjackComponent {
         this.gamblerWin(i)
       }
       // game draw
-      else if (this.bank.getHighestPlayablePoint(0) == this.gambler.getHighestPlayablePoint(i)) {
+      else if (this.bank.getHighestPlayablePoint(0) === this.gambler.getHighestPlayablePoint(i)) {
         this.gameDraw(i)
       }
       // lose
@@ -140,6 +142,7 @@ export class BlackjackComponent {
 
     this.started = true
     this.playingHand = 0
+    this.hideDealerCard = 1
 
     this.bank.clearCards()
     this.gambler.clearCards()

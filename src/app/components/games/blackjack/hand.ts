@@ -4,8 +4,8 @@ export default class Hand {
 
     private cards: Card[]
 
-    constructor(...cards : Card[]){
-        this.cards = cards 
+    constructor(...cards: Card[]) {
+        this.cards = cards
     }
 
     private busted: boolean = false
@@ -64,13 +64,13 @@ export default class Hand {
 
         this.points = [0]
         // run cards
-        this.cards.forEach(c=> {
+        this.cards.forEach(c => {
             //check if 1 and 11 for aces
-            let temp :number[] = []
-            if(c.getCardValue().length>1){
-                temp = this.points.map(t=> c.getCardValue()[1]+t)
+            let temp: number[] = []
+            if (c.getCardValue().length > 1) {
+                temp = this.points.map(t => c.getCardValue()[1] + t)
             }
-            
+
             // run totals
             this.points = this.points.map(t => c.getCardValue()[0] + t)
             this.points.push(...temp)
@@ -84,11 +84,11 @@ export default class Hand {
         return this.points[this.points.length - 1];
     }
 
-    canSplit(): boolean{
+    canSplit(): boolean {
         return this.cards.length <= 2 && this.cards[0].getCardValue()[0] === this.cards[1].getCardValue()[0]
     }
 
-    getCard(position:number): Card{ return this.cards[position]}
-    removeLastCard(): void{ this.cards.pop()}
+    getCard(position: number): Card { return this.cards[position] }
+    removeLastCard(): void { this.cards.pop() }
 
 }

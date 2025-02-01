@@ -11,6 +11,7 @@ export class CardDisplayerComponent {
   //in class, the variable name must be complete
   position: string[] = []
   @Input() cards: string[] | null = null
+  @Input() hideCard: number|undefined = undefined
 
   constructor(){
     for(let i=0;i<10;i++){

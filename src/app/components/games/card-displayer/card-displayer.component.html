@@ -1,5 +1,12 @@
 <ul class="relative h-36 flex pb-5 w-full justify-start">
+    <!-- hide second card -->
     <li *ngFor="let card of cards, let i = index" class="pe-5">
-        <img class="absolute w-24" src='assets/images/cards/{{card}}.svg' />
+        @if (hideCard === i) {
+            <img class="absolute w-24" src='assets/images/cards/1B.svg' />
+        }
+        @else {
+            <img class="absolute w-24" src='assets/images/cards/{{card}}.svg' />
+        }
+
     </li>
 </ul>
