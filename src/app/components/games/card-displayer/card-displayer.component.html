@@ -1,5 +1,5 @@
-<ul class="flex pb-5 w-full justify-center space-evenly">
-    <li *ngFor="let card of cards" class="px-2 max-w-40">
-        <img src='assets/images/cards/{{card}}.svg' />
+<ul class="relative h-36 flex pb-5 w-full justify-start">
+    <li *ngFor="let card of cards, let i = index" class="pe-5">
+        <img class="absolute w-24" src='assets/images/cards/{{card}}.svg' />
     </li>
 </ul>

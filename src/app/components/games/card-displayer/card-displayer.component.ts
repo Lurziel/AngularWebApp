@@ -8,7 +8,14 @@ import { Component, Input } from '@angular/core';
   templateUrl: './card-displayer.component.html',
 })
 export class CardDisplayerComponent {
+  //in class, the variable name must be complete
+  position: string[] = []
+  @Input() cards: string[] | null = null
 
-  @Input() cards : string[]|null = null
-  
+  constructor(){
+    for(let i=0;i<10;i++){
+      this.position.push(`left-${i*5}`)
+    }
+  }
+
 }

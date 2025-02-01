@@ -1,25 +1,30 @@
 <div class="flex flex-col max-w-4xl justify-center items-center">
     <div class="flex flex-col max-w-xl mb-5">
-        <p class="text-right">Points de la banque (reste à 17) : {{bank.getPoints()}}</p>
-        <app-card-displayer [cards]="bank.getCardImages()" />
-        <app-card-displayer [cards]="gambler.getCardImages()" />
-        <p>Vos points : {{gambler.getPoints()}}</p>
-        <p>jetons : {{gambler.getTokens()}}</p>
+        <p class="text-right">Points de la banque (reste à 17) : {{bank.getPoints(0)}}</p>
+        <app-card-displayer [cards]="bank.getAllCardImages()[0].length < 2 ? emptyHand : bank.getAllCardImages()[0]" />
+        <div class="flex flex-col items-center border-4 border-indigo-500" *ngFor="let hand of gambler.getHands()">
+            <app-card-displayer class="w-full" [cards]="hand.getCardImages().length < 2 ? emptyHand: hand.getCardImages()" />
+            <p>Vos points : {{hand.getPoints()}}</p>
+        </div>
+
+        <p>Vos jetons : {{gambler.getTokens()}}</p>
         <div class="flex fex-row space-evenly">
             <p>Votre mise (min 5, max 500) : </p>
-            <input class="text-right" type="number" [(ngModel)]="bet" min="5" max="500" [disabled]="started" />
+            <input class="text-right" type="number" [(ngModel)]="mainBet" min="5" max="500" [disabled]="started" />
         </div>
     </div>
 
     <div class="flex flex-col items-center">
         <app-button *ngIf="!started" (click)="start()" color="bg-secondary" name="Miser" width="w-48" />
         <div class="flex flex-row justify-center">
-            <app-button *ngIf="started" (click)="gamblerHit(gambler)" color="bg-hover" name="Carte" width="w-48" />
+            <app-button *ngIf="started" (click)="gamblerHit(playingHand, gambler)" color="bg-hover" name="Carte"
+                width="w-48" />
             <app-button *ngIf="started" (click)="gamblerStop()" color="bg-dark" name="Rester" width="w-48" />
         </div>
         <div class="flex flex-row justify-center">
-            <app-button *ngIf="started&&canDouble()" (click)="double()" color="bg-alert" name='Double (mise + {{bet}})' width="w-48"/>
-            <!-- <app-button *ngIf="started" (click)="split()" color="bg-primary" name="Séparer" width="w-48"/> -->
+            <app-button *ngIf="started&&canDouble(playingHand)" (click)="double(playingHand)" color="bg-alert"
+                name='Double (mise + {{mainBet}})' width="w-48" />
+            <app-button *ngIf="started&&canSplit(playingHand)" (click)="split(playingHand)" color="bg-primary" name="Séparer" width="w-48"/>
         </div>
     </div>
 </div>

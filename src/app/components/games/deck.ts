@@ -30,4 +30,8 @@ export default class Deck {
     return this.cards
   }
 
+  isEmpty(): boolean{
+    return this.cards.length<1
+  }
+
 }

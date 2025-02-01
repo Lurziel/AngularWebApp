@@ -4,8 +4,8 @@ import { Gambler, Bank, Player } from './player';
 import { CommonModule } from '@angular/common';
 import { CardDisplayerComponent } from '../card-displayer/card-displayer.component';
 import { ButtonComponent } from '../../util/button/button.component';
-import Card from './card';
 import { FormsModule } from '@angular/forms';
+const INIT_BET = 10
 
 @Component({
   selector: 'app-blackjack',
@@ -18,112 +18,132 @@ export class BlackjackComponent {
   bank = new Bank()
   gambler = new Gambler()
 
-  emptyHand: Card[] = [new Card("1", "B"), new Card("1", "B")]
-
+  emptyHand: string[] = ["1B", "1B"]
   deck: Deck = new Deck()
+
+  mainBet: number = INIT_BET
+  bets: number[] = []
+
+  playingHand: number = 0;
   started: boolean = false
 
-  bet: number = 5
-
-  canDouble() : boolean { return this.gambler.getNumberOfCard() < 3 && this.bet <= this.gambler.getTokens() }
+  canDouble(handNumber: number): boolean { return this.gambler.canDouble(handNumber, this.mainBet) }
+  canSplit(handNumber: number): boolean { return this.gambler.canSplit(handNumber) }
 
   start() {
-    if (this.bet < 5 || this.bet > 500 || this.bet > this.gambler.getTokens()) return
+    if (this.mainBet < 5 || this.mainBet > 500 || this.mainBet > this.gambler.getTokens()) return
 
     this.initGame()
-    this.gambler.bet(this.bet)
 
-    if (this.gambler.isBlackjack() && this.bank.isBlackjack()) {
-      //draw
-      this.gameDraw()
-    } else if (this.gambler.isBlackjack()) {
+    this.bets[0] = this.mainBet
+    this.gambler.bet(this.mainBet)
+    if (this.gambler.isBlackjack(0) && this.bank.isBlackjack(0)) {
+      //draw blackjack
+      this.gameDraw(0)
+    } else if (this.gambler.isBlackjack(0)) {
       //gamb win *1.5
-      this.gamblerWin()
-    } else if (this.bank.isBlackjack()) {
+      this.gamblerWin(0)
+    } else if (this.bank.isBlackjack(0)) {
       //bank win
-      this.gamblerLose()
+      this.gamblerLose(0)
     }
   }
 
-  gamblerHit(player: Player) {
-    player.hit(this.deck.cards)
+  gamblerHit(handNumber: number, player: Player) {
+    player.hit(handNumber, this.deck.cards)
 
-    // blackjack/21
-    if (this.gambler.isBlackjack()) {
-      this.gamblerWin()
-    }
-
-    // busted
-    if (this.gambler.isBusted()) {
-      this.gamblerLose()
+    // 21 or busted
+    if (this.gambler.isBlackjack(handNumber) || this.gambler.isBusted(handNumber)) {
+      this.gamblerStop()
     }
 
   }
 
   gamblerStop() {
+    this.playingHand += 1
+    if (this.playingHand > this.gambler.getNumberOfHand() - 1) this.gameEnd()
+  }
+
+  gameEnd() {
+    this.started = false
+
+    if(this.gambler.isAllBusted()) return
 
     //bank draw : not at 17 
     while (this.bank.isBelow17()) {
-      this.bank.hit(this.deck.cards)
+      this.bank.hit(0, this.deck.cards)
     }
 
-    //player win
-    if (this.bank.isBusted() || this.bank.getHighestPlayablePoint() < this.gambler.getHighestPlayablePoint()) {
-      this.gamblerWin()
+    for (let i = 0; i < this.gambler.getNumberOfHand(); i++) {
+
+      // gambler busted hand
+      if (this.gambler.isBusted(i)) {
+        this.gamblerLose(i)
+      }
+      // player win
+      else if (this.bank.isBusted(0) || this.bank.getHighestPlayablePoint(0) < this.gambler.getHighestPlayablePoint(i)) {
+        this.gamblerWin(i)
+      }
+      // game draw
+      else if (this.bank.getHighestPlayablePoint(0) == this.gambler.getHighestPlayablePoint(i)) {
+        this.gameDraw(i)
+      }
+      // lose
+      else {
+        this.gamblerLose(i)
+      }
     }
-    //game draw
-    else if (this.bank.getHighestPlayablePoint() == this.gambler.getHighestPlayablePoint()) {
-      this.gameDraw()
-    }
-    //lose
-    else {
-      this.gamblerLose()
-    }
+    this.mainBet = INIT_BET
   }
 
-  gamblerWin(): void {
+  gamblerWin(handNumber: number): void {
     this.started = false
-    this.gambler.win(this.bet * 2)
-    if (this.gambler.isBlackjack()) {
-      this.gambler.win(this.bet * 0.5)
+    this.gambler.win(this.bets[handNumber] * 2)
+    if (this.gambler.isBlackjack(handNumber)) {
+      this.gambler.win(this.bets[handNumber] * 0.5)
     }
   }
 
-  gameDraw() {
+  gameDraw(handNumber: number) {
     this.started = false
-    this.gambler.win(this.bet)
+    this.gambler.win(this.bets[handNumber])
   }
 
-  gamblerLose(): void {
+  gamblerLose(handNumber: number): void {
+    // Afficher perdu
     this.started = false
+
   }
 
-  //first hand only
-  double() {
-    if (!this.canDouble()) return
+  double(handNumber: number) {
+    if (!this.canDouble(handNumber)) return
 
-    this.gambler.bet(this.bet)
-    this.bet *= 2
+    this.gambler.bet(this.bets[handNumber])
+    this.bets[handNumber] *= 2
 
-    this.gamblerHit(this.gambler)
-    if (!this.gambler.isBusted()) this.gamblerStop()
+    this.gamblerHit(handNumber, this.gambler)
+    if (!this.gambler.isBusted(handNumber)) this.gameEnd()
   }
 
-  split() {
-    //TODO
+  split(handNumber: number) {
+    this.gambler.split(handNumber, this.deck.cards)
+    this.bets.push(this.mainBet)
   }
 
   private initGame() {
+
     this.started = true
+    this.playingHand = 0
+
     this.bank.clearCards()
     this.gambler.clearCards()
 
     this.deck = new Deck()
 
-    this.gambler.hit(this.deck.cards);
-    this.bank.hit(this.deck.cards);
-    this.gambler.hit(this.deck.cards);
-    this.bank.hit(this.deck.cards);
+    this.gambler.hit(0, this.deck.cards);
+    this.bank.hit(0, this.deck.cards);
+    this.gambler.hit(0, this.deck.cards);
+    this.bank.hit(0, this.deck.cards);
   }
 
 }
