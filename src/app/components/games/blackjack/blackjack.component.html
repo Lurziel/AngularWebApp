@@ -1,12 +1,12 @@
 <div class="flex flex-col w-4xl justify-center items-center">
     <div class="flex flex-col max-w-96 mb-5">
-        <div class="flex flex-col p-5 my-1.5 rounded-lg items-center border-4 bg-red-300 text-white">
+        <div class="flex flex-col p-5 my-1.5 rounded-lg items-center border-4 border-red-300">
             <p *ngIf="!started && bank.getHands()[0].numberOfCard()>0" class="text-right mb-2">{{bank.getPoints(0)}}</p>
             <app-card-displayer class="w-full" [hideCard]="hideDealerCard"
                 [cards]="bank.getAllCardImages()[0].length < 2 ? emptyHand : bank.getAllCardImages()[0]" />
         </div>
 
-        <div class="flex flex-col p-5 my-1.5 rounded-lg items-center border-4 {{i=== playingHand? 'bg-hover':''}}"
+        <div class="flex flex-col p-5 my-1.5 rounded-lg items-center border-4 {{gamesResult[i]}} {{i=== playingHand? 'border-hover':''}}"
             *ngFor="let hand of gambler.getHands(), let i=index">
             <app-card-displayer class="w-full"
                 [cards]="hand.getCardImages().length < 2 ? emptyHand: hand.getCardImages()" />

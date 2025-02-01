@@ -8,6 +8,11 @@ import { FormsModule } from '@angular/forms';
 
 const INIT_BET = 10
 
+const LOSE ="bg-red-300"
+const WIN = "bg-green-300"
+const BLACKJACK = "bg-blue-300"
+const DRAW = "bg-slate-300"
+
 @Component({
   selector: 'app-blackjack',
   standalone: true,
@@ -30,7 +35,8 @@ export class BlackjackComponent {
   playingHand: number = 0;
   started: boolean = false
 
-  hideDealerCard : number | undefined = 1
+  hideDealerCard : number | undefined = undefined
+  gamesResult : string[] = []
 
   canDouble(handNumber: number): boolean { return this.gambler.canDouble(handNumber, this.mainBet) }
   canSplit(handNumber: number): boolean { return this.gambler.canSplit(handNumber) }
@@ -107,16 +113,20 @@ export class BlackjackComponent {
     this.gambler.win(this.bets[handNumber] * 2)
     if (this.gambler.isBlackjack(handNumber)) {
       this.gambler.win(this.bets[handNumber] * 0.5)
-    }    
+      this.gamesResult[handNumber] = BLACKJACK
+      return
+    }
+    this.gamesResult[handNumber] = WIN
   }
 
   gameDraw(handNumber: number) {
     this.gambler.win(this.bets[handNumber])
+    this.gamesResult[handNumber] = DRAW
   }
 
   gamblerLose(handNumber: number): void {
     // Afficher perdu
-
+    this.gamesResult[handNumber] = LOSE
   }
 
   double(handNumber: number) {
@@ -143,6 +153,8 @@ export class BlackjackComponent {
     this.started = true
     this.playingHand = 0
     this.hideDealerCard = 1
+    this.gamesResult = ["","","","",""]
+
 
     this.bank.clearCards()
     this.gambler.clearCards()
