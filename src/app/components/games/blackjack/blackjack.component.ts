@@ -2,21 +2,22 @@ import { Component, Input } from '@angular/core';
 import Deck from '../deck';
 import { Gambler, Bank, Player } from './player';
 import { CommonModule } from '@angular/common';
-import { CardDisplayerComponent } from '../card-displayer/card-displayer.component';
+import { CardsDisplayerComponent } from '../cards-displayer/cards-displayer.component';
 import { ButtonComponent } from '../../util/button/button.component';
 import { FormsModule } from '@angular/forms';
+import { HandDisplayerComponent } from "../hand-displayer/hand-displayer.component";
 
 const INIT_BET = 10
 
-const LOSE ="bg-red-300"
-const WIN = "bg-green-300"
-const BLACKJACK = "bg-blue-300"
-const DRAW = "bg-slate-300"
+const LOSE = 2
+const WIN = 1
+const BLACKJACK = 0
+const DRAW = 3
 
 @Component({
   selector: 'app-blackjack',
   standalone: true,
-  imports: [CommonModule, CardDisplayerComponent, ButtonComponent, FormsModule],
+  imports: [CommonModule, CardsDisplayerComponent, ButtonComponent, FormsModule, HandDisplayerComponent],
   templateUrl: './blackjack.component.html',
 })
 export class BlackjackComponent {
@@ -36,7 +37,9 @@ export class BlackjackComponent {
   started: boolean = false
 
   hideDealerCard : number | undefined = undefined
-  gamesResult : string[] = []
+  gamesResult : number[] = []
+
+  //TODO total win/lose
 
   canDouble(handNumber: number): boolean { return this.gambler.canDouble(handNumber, this.mainBet) }
   canSplit(handNumber: number): boolean { return this.gambler.canSplit(handNumber) }
@@ -48,6 +51,7 @@ export class BlackjackComponent {
     this.bets[0] = this.mainBet
     this.gambler.bet(this.mainBet)
     if (this.gambler.isBlackjack(0) || this.bank.isBlackjack(0)) {
+      this.playingHand+=1
       this.gameEnd()
     }
   }
@@ -75,12 +79,13 @@ export class BlackjackComponent {
   gameEnd() {
     this.started = false
     this.hideDealerCard = undefined
+    this.mainBet = INIT_BET
 
-    if(this.gambler.isAllBusted()) return
-
-    //bank draw : not at 17 
-    while (this.bank.isBelow17()) {
-      this.bank.hit(0, this.deck.cards)
+    if (!this.gambler.isAllBusted()) {
+      //bank draw : not at 17 
+      while (this.bank.isBelow17()) {
+        this.bank.hit(0, this.deck.cards)
+      }
     }
 
     for (let i = 0; i < this.gambler.getNumberOfHand(); i++) {
@@ -106,7 +111,6 @@ export class BlackjackComponent {
         this.gamblerLose(i)
       }
     }
-    this.mainBet = INIT_BET
   }
 
   gamblerWin(handNumber: number): void {
@@ -136,7 +140,8 @@ export class BlackjackComponent {
     this.bets[handNumber] *= 2
 
     this.gamblerHit(handNumber, this.gambler)
-    if (!this.gambler.isBusted(handNumber)) this.gameEnd()
+    //hit always pass when busted
+    if (!this.gambler.isBusted(handNumber)) this.gamblerPass()
   }
 
   split(handNumber: number) {
@@ -153,7 +158,7 @@ export class BlackjackComponent {
     this.started = true
     this.playingHand = 0
     this.hideDealerCard = 1
-    this.gamesResult = ["","","","",""]
+    this.gamesResult = [-1,-1,-1,-1,-1]
 
 
     this.bank.clearCards()

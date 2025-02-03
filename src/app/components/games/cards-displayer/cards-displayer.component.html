@@ -1,0 +1,5 @@
+<ul class="relative h-36 flex w-64 pb-5 justify-start">
+    <li *ngFor="let card of cards, let i = index" class="absolute {{position[i]}} w-24">
+        <img class="w-36" src="assets/images/cards/{{hideCard === i ? '1B' : card }}.svg" />
+    </li>
+</ul>

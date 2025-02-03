@@ -1,0 +1,7 @@
+<div class="flex flex-col px-5 pb-2 pt-3 my-1.5 rounded-lg items-center border-4 {{gameResults[gameResult]}} {{isPlaysingHand? 'border-hover':''}}">
+    @if(hand!= null){
+        <app-cards-displayer class="w-full" [cards]="hand.getCardImages().length < 2 ? emptyHand: hand.getCardImages()" />
+        <p>Points : {{hand.getPoints()}}</p>
+        <p *ngIf="bet!==undefined">Mise : {{bet}}</p>
+    }
+</div>
