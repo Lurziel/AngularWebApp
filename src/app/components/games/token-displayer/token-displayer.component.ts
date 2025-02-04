@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-token-displayer',
@@ -7,5 +7,5 @@ import { Component } from '@angular/core';
   templateUrl: './token-displayer.component.html',
 })
 export class TokenDisplayerComponent {
-  
+  @Input() number : number = 0
 }

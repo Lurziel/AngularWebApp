@@ -12,7 +12,7 @@ module.exports = withMT({
         'secondary': '#495E57', // dark green (header)
         'hover': '#00b183', // light green
         'light': '#F5F7F8', // white (text)
-        'dark': '#45474B', // grey (footer)
+        'dark': '#0e0e13', // grey (footer)
         'alert': '#c13434', // red
       },
     },

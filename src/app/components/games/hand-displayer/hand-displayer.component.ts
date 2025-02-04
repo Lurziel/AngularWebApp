@@ -3,11 +3,12 @@ import { Component, Input } from '@angular/core';
 import { CardsDisplayerComponent } from '../cards-displayer/cards-displayer.component';
 import Hand from '../blackjack/hand';
 import { ScoreDisplayerComponent } from "../score-displayer/score-displayer.component";
+import { TokenDisplayerComponent } from "../token-displayer/token-displayer.component";
 
 @Component({
   selector: 'app-hand-displayer',
   standalone: true,
-  imports: [CommonModule, CardsDisplayerComponent, ScoreDisplayerComponent],
+  imports: [CommonModule, CardsDisplayerComponent, ScoreDisplayerComponent, TokenDisplayerComponent],
   templateUrl: './hand-displayer.component.html',
 })
 export class HandDisplayerComponent {
@@ -27,4 +28,5 @@ export class HandDisplayerComponent {
   @Input() bet: number | undefined = undefined
   @Input() displayScore: boolean = false
   @Input() hideCard : number[] = []
+  @Input() rotate : boolean[] =[]
 }
