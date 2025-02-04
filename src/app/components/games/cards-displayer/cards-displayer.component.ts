@@ -12,7 +12,7 @@ export class CardsDisplayerComponent {
   // ['left-[0px]','left-[px]','left-[8px]','left-[12px]','left-[16px]','left-[20px]','left-[24px]','left-[28px]']
   position: string[] = ['left-[0px]','left-[16px]','left-[32px]','left-[48px]','left-[64px]','left-[80px]','left-[96px]','left-[112px]']
   @Input() cards: string[] | null = null
-  @Input() hideCard: number|undefined = undefined
+  @Input() hideCard: number[] = []
 
   // ngOnInit(){
   //   for(let i=0;i<10;i++){

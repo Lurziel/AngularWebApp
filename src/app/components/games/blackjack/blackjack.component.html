@@ -1,20 +1,20 @@
-<div class="flex flex-col w-4xl justify-center items-center">
-    <div class="flex flex-col max-w-96 mb-5">
-        <div class="flex flex-col p-5 my-1.5 rounded-lg items-center border-4 border-red-300">
-            <p *ngIf="!started && bank.getHands()[0].numberOfCard()>0" class="text-right mb-2">{{bank.getPoints(0)}}</p>
-            <app-cards-displayer class="w-full" [hideCard]="hideDealerCard"
-                [cards]="bank.getAllCardImages()[0].length < 2 ? emptyHand : bank.getAllCardImages()[0]" />
-        </div>
-
+<div class="flex flex-col justify-center items-center">
+    <div class="flex flex-col md:max-w-96 mb-5">
+        
+        <!-- dealer -->
+        <p>Dealer must stand on 17</p>
+        <app-hand-displayer [hideCard]="hideDealerCard" class="mb-10" [hand]="bank.getHands()[0]"
+            [displayScore]="!started && bank.getHands()[0].numberOfCard()>0" />
+        
+        <!-- gambler -->
         <app-hand-displayer *ngFor="let hand of gambler.getHands(), let i=index" [gameResult]="gamesResult[i]"
-            [isPlaysingHand]="i=== playingHand" [hand]="hand" [bet]="bets[i]"/>
-        
-        
+            [isPlaysingHand]="i=== playingHand" [hand]="hand" [bet]="bets[i]" [displayScore]="true"/>
+
         @if (!started) {
-            <div class="flex fex-row space-evenly">
-                <p>Mise (min 5, max 500) : </p>
-                <input class="text-right" type="number" [(ngModel)]="mainBet" min="5" max="500" [disabled]="started" />
-            </div>
+        <div class="flex fex-row space-evenly">
+            <p>Mise (min 5, max 500) : </p>
+            <input class="text-right" type="number" [(ngModel)]="mainBet" min="5" max="500" [disabled]="started" />
+        </div>
         }
 
     </div>

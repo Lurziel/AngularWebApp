@@ -2,11 +2,12 @@ import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
 import { CardsDisplayerComponent } from '../cards-displayer/cards-displayer.component';
 import Hand from '../blackjack/hand';
+import { ScoreDisplayerComponent } from "../score-displayer/score-displayer.component";
 
 @Component({
   selector: 'app-hand-displayer',
   standalone: true,
-  imports: [CommonModule, CardsDisplayerComponent],
+  imports: [CommonModule, CardsDisplayerComponent, ScoreDisplayerComponent],
   templateUrl: './hand-displayer.component.html',
 })
 export class HandDisplayerComponent {
@@ -24,4 +25,6 @@ export class HandDisplayerComponent {
   @Input() isPlaysingHand: boolean = false
   @Input() hand: Hand | null = null
   @Input() bet: number | undefined = undefined
+  @Input() displayScore: boolean = false
+  @Input() hideCard : number[] = []
 }

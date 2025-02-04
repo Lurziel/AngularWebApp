@@ -57,6 +57,11 @@ class Gambler extends Player {
             if(!this.hands[i].isBusted()) return false
         return true
     }
+    isAllBlackjack():boolean{
+        for(let i=0;i<this.getNumberOfHand();i++)
+            if(!this.hands[i].isBlackjack()) return false
+        return true
+    }
 }
 
 export { Bank, Gambler, Player }

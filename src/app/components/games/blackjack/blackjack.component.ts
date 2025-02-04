@@ -36,7 +36,7 @@ export class BlackjackComponent {
   playingHand: number = 0;
   started: boolean = false
 
-  hideDealerCard : number | undefined = undefined
+  hideDealerCard : number[] = []
   gamesResult : number[] = []
 
   //TODO total win/lose
@@ -78,12 +78,12 @@ export class BlackjackComponent {
 
   gameEnd() {
     this.started = false
-    this.hideDealerCard = undefined
+    this.hideDealerCard = []
     this.mainBet = INIT_BET
 
-    if (!this.gambler.isAllBusted()) {
+    if (!this.gambler.isAllBusted() && !this.gambler.isAllBlackjack()) {
       //bank draw : not at 17 
-      while (this.bank.isBelow17()) {
+      while (this.bank.isBelow17()&& !this.deck.isEmpty()) {
         this.bank.hit(0, this.deck.cards)
       }
     }
@@ -157,7 +157,7 @@ export class BlackjackComponent {
 
     this.started = true
     this.playingHand = 0
-    this.hideDealerCard = 1
+    this.hideDealerCard.push(1)
     this.gamesResult = [-1,-1,-1,-1,-1]
 
 

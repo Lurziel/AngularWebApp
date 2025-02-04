@@ -1,7 +1,18 @@
-<div class="flex flex-col px-5 pb-2 pt-3 my-1.5 rounded-lg items-center border-4 {{gameResults[gameResult]}} {{isPlaysingHand? 'border-hover':''}}">
+<div
+    class="flex flex-col px-5 pb-2 pt-3 my-1.5 rounded-lg items-center border-4 {{gameResults[gameResult]}} {{isPlaysingHand? 'border-hover':''}}">
+
     @if(hand!= null){
-        <app-cards-displayer class="w-full" [cards]="hand.getCardImages().length < 2 ? emptyHand: hand.getCardImages()" />
-        <p>Points : {{hand.getPoints()}}</p>
-        <p *ngIf="bet!==undefined">Mise : {{bet}}</p>
+        <app-cards-displayer class="mb-2" [cards]="hand.getCardImages().length < 2 ? emptyHand: hand.getCardImages()"
+            [hideCard]="hideCard" />
+        <div class="flex flex-row justify-between w-full">
+            <div *ngIf="displayScore" class="flex flex-row justify-start">
+                <app-score-displayer class="me-2" *ngFor="let score of hand.getPoints()" [score]="score.toString()" />
+            </div>
+            <div class="flex flex-row basis-1/3 space-end justify-center" *ngIf="bet!==undefined">
+                <p class="flex items-center text-end pe-2">{{bet}}</p>
+                <img width="20px" src="assets/images/games/spade-token.svg" />
+            </div>
+        </div>
     }
+
 </div>
