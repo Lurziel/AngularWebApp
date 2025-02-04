@@ -1,5 +1,5 @@
 <ul class="relative h-[112px] w-[200px] md:w-xl justify-start">
-    <li *ngFor="let card of cards, let i = index" class="absolute {{position[i]}} w-[80px] {{rotate[i] ? 'rotate-90':'' }}">
+    <li *ngFor="let card of cards, let i = index" class="absolute {{position[i]}} w-[80px]">
         <img width="80px" src="assets/images/games/cards/{{hideCard.includes(i) ? '1B' : card }}.svg" />
     </li>
 </ul>

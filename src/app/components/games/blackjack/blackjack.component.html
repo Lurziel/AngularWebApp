@@ -31,7 +31,7 @@
     <div class="w-full flex flex-row-reverse space-between">
         <app-icon-button *ngIf="started" (click)="gamblerHit(playingHand, gambler)" color="bg-hover"
             src="assets/images/games/card-heart.svg" class="flex basis-1/4 justify-center" />
-        <app-icon-button *ngIf="started" (click)="gamblerPass()" color="bg-indigo-600" src="assets/images/games/hand.svg"
+        <app-icon-button *ngIf="started" (click)="gamblerPass()" color="bg-indigo-400" src="assets/images/games/hand.svg"
             class="flex basis-1/4 justify-center" />
         <app-icon-button *ngIf="started&&canDouble(playingHand)" (click)="double(playingHand)" color="bg-alert"
             src='assets/images/games/multiply-2.svg' class="flex basis-1/4 justify-center" />
