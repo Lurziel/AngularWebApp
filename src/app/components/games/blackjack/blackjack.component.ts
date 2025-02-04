@@ -37,8 +37,6 @@ export class BlackjackComponent {
   hideDealerCard : number[] = []
   gamesResult : number[] = []
 
-  rotateDouble:boolean[][]=[[]]
-
   //TODO total win/lose
 
   canDouble(handNumber: number): boolean { return this.gambler.canDouble(handNumber, this.mainBet) }
@@ -139,7 +137,6 @@ export class BlackjackComponent {
     this.gambler.bet(this.bets[handNumber])
     this.bets[handNumber] *= 2
 
-    //this.rotateDouble[handNumber][this.gambler.getNumberOfCard(handNumber)-1] = true
     this.gamblerHit(handNumber, this.gambler)
     //hit always pass when busted
     if (!this.gambler.isBusted(handNumber)) this.gamblerPass()
@@ -160,7 +157,6 @@ export class BlackjackComponent {
     this.playingHand = 0
     this.hideDealerCard.push(1)
     this.gamesResult = [-1,-1,-1,-1,-1]
-    this.rotateDouble = [[]]
 
     this.bank.clearCards()
     this.gambler.clearCards()
