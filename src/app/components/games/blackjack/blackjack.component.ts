@@ -17,7 +17,7 @@ const DRAW = 3
 @Component({
   selector: 'app-blackjack',
   standalone: true,
-  imports: [CommonModule, CardsDisplayerComponent, ButtonComponent, FormsModule, HandDisplayerComponent],
+  imports: [CommonModule, ButtonComponent, FormsModule, HandDisplayerComponent],
   templateUrl: './blackjack.component.html',
 })
 export class BlackjackComponent {
