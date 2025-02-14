@@ -7,8 +7,7 @@
 
     <!-- gambler -->
     <app-hand-displayer *ngFor="let hand of gambler.getHands(), let i=index" [gameResult]="gamesResult[i]"
-        [isPlaysingHand]="i=== playingHand" [hand]="hand" [bet]="bets[i]" [displayScore]="true"
-        class="w-full" />
+        [isPlaysingHand]="i=== playingHand" [hand]="hand" [bet]="bets[i]" [displayScore]="true" class="w-full" />
 
     <app-token-displayer class="my-4 sm:my-10" [number]="gambler.getTokens()" />
 
@@ -16,9 +15,9 @@
     <div class="flex flex-col items-center border border-slate-400 p-5 rounded-lg">
         <div class="flex fex-row space-evenly items-center">
             <p>Mise (min 5, max 500) : </p>
-            <input 
-            class="text-right text-lg ms-2 pr-1 py-1 bg-transparent border rounded-r-md transition duration-300 ease focus:outline-none shadow-sm focus:shadow"
-            type="number" [(ngModel)]="mainBet" min="5" max="500" [disabled]="started" />
+            <input
+                class="text-right text-lg ms-2 pr-1 py-1 bg-transparent border rounded-r-md transition duration-300 ease focus:outline-none shadow-sm focus:shadow"
+                type="number" [(ngModel)]="mainBet" min="5" max="500" [disabled]="started" />
         </div>
         <button (click)="start()"
             class="w-36 mt-3 py-2 px-4 rounded-md bg-secondary text-center text-sm text-light font-semibold focus:shadow-none hover:shadow-md hover:opacity-85">
@@ -29,13 +28,16 @@
     }
 
     <div class="w-full flex flex-row-reverse space-between">
-        <app-icon-button *ngIf="started" (click)="gamblerHit(playingHand, gambler)" color="bg-hover"
-            src="assets/images/games/card-heart.svg" class="flex basis-1/4 justify-center" />
-        <app-icon-button *ngIf="started" (click)="gamblerPass()" color="bg-indigo-400" src="assets/images/games/hand.svg"
+        <app-icon-button *ngIf="started" (click)="gamblerHit(playingHand, gambler)"
+            color="bg-green-500 ring ring-green-800" src="assets/images/games/card-heart.svg"
             class="flex basis-1/4 justify-center" />
-        <app-icon-button *ngIf="started&&canDouble(playingHand)" (click)="double(playingHand)" color="bg-alert"
-            src='assets/images/games/multiply-2.svg' class="flex basis-1/4 justify-center" />
-        <app-icon-button *ngIf="started&&canSplit(playingHand)" (click)="split(playingHand)" color="bg-primary"
-            src="assets/images/games/split-cells.svg" class="flex basis-1/4 justify-center" />
+        <app-icon-button *ngIf="started" (click)="gamblerPass()" color="bg-red-500 ring ring-red-800"
+            src="assets/images/games/hand.svg" class="flex basis-1/4 justify-center" />
+        <app-icon-button *ngIf="started&&canDouble(playingHand)" (click)="double(playingHand)"
+            color="bg-yellow-500 ring ring-yellow-800" src='assets/images/games/multiply-2.svg'
+            class="flex basis-1/4 justify-center" />
+        <app-icon-button *ngIf="started&&canSplit(playingHand)" (click)="split(playingHand)"
+            color="bg-blue-500 ring ring-blue-800" src="assets/images/games/split-cells.svg"
+            class="flex basis-1/4 justify-center" />
     </div>
 </div>

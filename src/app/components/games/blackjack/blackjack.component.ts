@@ -46,7 +46,6 @@ export class BlackjackComponent {
     if (this.mainBet < 5 || this.mainBet > 500 || this.mainBet > this.gambler.getTokens()) return
     this.initGame()
 
-    this.bets[0] = this.mainBet
     this.gambler.bet(this.mainBet)
     if (this.gambler.isBlackjack(0) || this.bank.isBlackjack(0)) {
       if(this.bank.isBlackjack(0)) this.gamesResult[4] = 0
@@ -157,6 +156,7 @@ export class BlackjackComponent {
     this.playingHand = 0
     this.hideDealerCard.push(1)
     this.gamesResult = [-1,-1,-1,-1,-1]
+    this.bets = [this.mainBet]
 
     this.bank.clearCards()
     this.gambler.clearCards()
