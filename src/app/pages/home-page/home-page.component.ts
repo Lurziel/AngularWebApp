@@ -17,6 +17,11 @@ export class HomePageComponent {
       img: "assets/images/rasp-pi-5.jpg"
     },
     {
+      name: "Raspberry : caméra et retransmission",
+      description: "Installation d'une caméra sur le raspberry et développement d'une interface web permettant d'accéder à la retransmission en direct sur le réseau local.",
+      img: "assets/images/rasp-pi-5-camera.jpg"
+    },
+    {
       name: "Raspberry : site web réalisé en Preact",
       description: "Interface web simple permettant d'interagir à distance avec le raspberry pi. Le site est déployé directement sur le raspberry pour que ce dernier soit autonome.",
       img: "assets/images/Preact.png"
@@ -30,7 +35,6 @@ export class HomePageComponent {
       name: "Portfolio : site web version Angular 18.0 et TS",
       description: "Site réalisé en Angular et TypeScript. Le design est réalisé avec le framework Tailwind CSS et Material Tailwind pour une plus grande liberté d'action. Le déploiement est effectué sur Vercel.",
       img: "assets/images/angular.png",
-      href: "https://www.charles-depaz.ovh/"
     },
     {
       name: "Portfolio : service REST réalisé en .Net 8.0",

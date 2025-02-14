@@ -3,7 +3,7 @@
         <ul class="flex flex-row items-center lg:gap-6">
             <li *ngFor="let data of navigationData">
                 <a [routerLink]="data.path" [class]="linkClass">
-                    <p class="hidden md:block">{{data.name}}</p>
+                    <p class="hidden md:inline-block md:self-end">{{data.name}}</p>
                     <app-svg [src]="data.svg" />
                 </a>
             </li>
