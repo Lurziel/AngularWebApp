@@ -44,8 +44,8 @@ export class HomePageComponent {
     {
       name: "Portfolio : site web version React et JS",
       description: "Version moins développée du portfolio qui utilise les technologies React et JavaScript. Le design est réalisé avec le framework Bootstrap.",
-      img: "assets/images/react.png",
-      href: "https://react-web-app-rosy.vercel.app/"
+      img: "assets/images/react.png"
+      //href: "https://react-web-app-rosy.vercel.app/"
     },
     {
       name: "GRICOR QCM",
